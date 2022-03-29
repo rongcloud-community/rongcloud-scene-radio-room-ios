@@ -33,7 +33,7 @@ public enum RadioRoomRouter: Route {
 
 public class RadioRoomCoordinator: NavigationCoordinator<RadioRoomRouter> {
 
-    init(rootViewController: UINavigationController) {
+    public init(rootViewController: UINavigationController) {
         super.init(rootViewController: rootViewController)
         radioRouter = strongRouter
     }
