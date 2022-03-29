@@ -14,12 +14,14 @@ import RCSceneFoundation
 
 var radioRouter: StrongRouter<RadioRoomRouter>!
 
-enum RadioRoomRouter: Route {
+public enum RadioRoomRouter: Route {
     case inputPassword(type: RCSceneRoomPasswordType, delegate: RCSceneRoomPasswordProtocol?)
     case notice(modify: Bool = false, notice: String, delegate: VoiceRoomNoticeDelegate)
     case userList(room: RCSceneRoom, delegate: RCSceneRoomUserOperationProtocol)
-    case manageUser(dependency: RCSceneRoomUserOperationDependency, delegate: RCSceneRoomUserOperationProtocol?)
-    case gift(dependency: RCSceneGiftDependency, delegate: RCSceneGiftViewControllerDelegate)
+    case manageUser(dependency: RCSceneRoomUserOperationDependency,
+                    delegate: RCSceneRoomUserOperationProtocol?)
+    case gift(dependency: RCSceneGiftDependency,
+              delegate: RCSceneGiftViewControllerDelegate)
     case messageList
     case privateChat(userId: String)
     case masterSeatOperation(userid: String, isMute: Bool, delegate: VoiceRoomMasterSeatOperationProtocol)
@@ -29,14 +31,14 @@ enum RadioRoomRouter: Route {
     case changeBackground(imageList: [String], delegate: ChangeBackgroundImageProtocol)
 }
 
-class RadioRoomCoordinator: NavigationCoordinator<RadioRoomRouter> {
+public class RadioRoomCoordinator: NavigationCoordinator<RadioRoomRouter> {
 
     init(rootViewController: UINavigationController) {
         super.init(rootViewController: rootViewController)
         radioRouter = strongRouter
     }
     
-    override func prepareTransition(for route: RadioRoomRouter) -> NavigationTransition {
+    public override func prepareTransition(for route: RadioRoomRouter) -> NavigationTransition {
         switch route {
         case let .inputPassword(type, delegate):
             let vc = VoiceRoomPasswordViewController(type: type, delegate: delegate)

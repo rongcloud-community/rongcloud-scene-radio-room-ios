@@ -9,7 +9,7 @@ import UIKit
 import IQKeyboardManager
 import RCSceneFoundation
 
-protocol VoiceRoomNoticeDelegate: AnyObject {
+public protocol VoiceRoomNoticeDelegate: AnyObject {
     func noticeDidModified(notice: String)
 }
 
