@@ -18,7 +18,7 @@ extension RCRadioRoomViewController {
     func resume() {
         SVProgressHUD.show()
         radioRoomService.resumeRoom(roomId: roomInfo.roomId) { [weak self] result in
-            switch result.map(AppResponse.self) {
+            switch result.map(RCSceneResponse.self) {
             case let .success(res):
                 if res.validate() {
                     SVProgressHUD.dismiss(withDelay: 0.3)
@@ -37,7 +37,7 @@ extension RCRadioRoomViewController {
     func suspend() {
         SVProgressHUD.show()
         radioRoomService.suspendRoom(roomId: roomInfo.roomId) { [weak self] result in
-            switch result.map(AppResponse.self) {
+            switch result.map(RCSceneResponse.self) {
             case let .success(res):
                 if res.validate() {
                     SVProgressHUD.dismiss(withDelay: 0.3)

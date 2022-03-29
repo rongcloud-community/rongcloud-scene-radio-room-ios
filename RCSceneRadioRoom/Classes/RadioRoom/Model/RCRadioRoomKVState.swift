@@ -39,7 +39,7 @@ extension RCRadioRoomKVDelegate {
 }
 
 class RCRadioRoomKVState: NSObject {
-    private let room: VoiceRoom
+    private let room: RCSceneRoom
     private(set) var roomName: String
     private(set) var seating: Bool = false
     private(set) var mute: Bool = false
@@ -52,7 +52,7 @@ class RCRadioRoomKVState: NSObject {
     
     weak var delegate: RCRadioRoomKVDelegate?
     
-    init(_ room: VoiceRoom) {
+    init(_ room: RCSceneRoom) {
         self.room = room
         self.roomName = room.roomName
         super.init()

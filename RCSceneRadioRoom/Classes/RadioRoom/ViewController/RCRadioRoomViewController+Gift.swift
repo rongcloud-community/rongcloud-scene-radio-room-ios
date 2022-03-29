@@ -42,7 +42,7 @@ extension RCRadioRoomViewController {
     }
     
     @objc func handleGiftButtonClick() {
-        let dependency = VoiceRoomGiftDependency(room: roomInfo,
+        let dependency = RCSceneGiftDependency(room: roomInfo,
                                                  seats: [roomInfo.userId],
                                                  userIds: [roomInfo.userId])
         radioRouter.trigger(.gift(dependency: dependency, delegate: self))
@@ -64,7 +64,7 @@ extension RCRadioRoomViewController {
     }
 }
 
-extension RCRadioRoomViewController: VoiceRoomGiftViewControllerDelegate {
+extension RCRadioRoomViewController: RCSceneGiftViewControllerDelegate {
     func didSendGift(message: RCMessageContent) {
         if let message = message as? RCChatroomSceneMessageProtocol {
             messageView.addMessage(message)

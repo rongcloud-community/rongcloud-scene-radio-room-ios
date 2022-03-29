@@ -36,11 +36,11 @@ extension RCRadioRoomViewController: RCRTCBroadcastDelegate {
         }
     }
     
-    func broadcastViewAccessible(_ room: VoiceRoom) -> Bool {
+    func broadcastViewAccessible(_ room: RCSceneRoom) -> Bool {
         return room.roomId != roomInfo.roomId && roomInfo.userId != Environment.currentUserId
     }
     
-    func broadcastViewDidClick(_ room: VoiceRoom) {
+    func broadcastViewDidClick(_ room: RCSceneRoom) {
         if room.isPrivate == 1 {
             radioRouter.trigger(.inputPassword(type: .verify(room), delegate: self))
         } else {
@@ -49,12 +49,12 @@ extension RCRadioRoomViewController: RCRTCBroadcastDelegate {
     }
 }
 
-extension RCRadioRoomViewController: InputPasswordProtocol {
+extension RCRadioRoomViewController: RCSceneRoomPasswordProtocol {
     func passwordDidEnter(password: String) {
         
     }
     
-    func passwordDidVerify(_ room: VoiceRoom) {
+    func passwordDidVerify(_ room: RCSceneRoom) {
         if room.roomId == roomInfo.roomId { return }
         roomContainerAction?.switchRoom(room)
     }

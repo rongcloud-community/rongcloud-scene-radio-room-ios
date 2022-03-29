@@ -7,19 +7,19 @@
 
 import UIKit
 import XCoordinator
-import RCSceneFoundation
-import RCSceneChat
+
 import RCSceneGift
 import RCSceneRoom
+import RCSceneFoundation
 
-public var radioRouter: StrongRouter<RadioRoomRouter>!
+var radioRouter: StrongRouter<RadioRoomRouter>!
 
-public enum RadioRoomRouter: Route {
-    case inputPassword(type: PasswordViewType, delegate: InputPasswordProtocol?)
+enum RadioRoomRouter: Route {
+    case inputPassword(type: RCSceneRoomPasswordType, delegate: RCSceneRoomPasswordProtocol?)
     case notice(modify: Bool = false, notice: String, delegate: VoiceRoomNoticeDelegate)
-    case userList(room: VoiceRoom, delegate: UserOperationProtocol)
-    case manageUser(dependency: Any?, delegate: UserOperationProtocol?)
-    case gift(dependency: VoiceRoomGiftDependency, delegate: VoiceRoomGiftViewControllerDelegate)
+    case userList(room: RCSceneRoom, delegate: RCSceneRoomUserOperationProtocol)
+    case manageUser(dependency: RCSceneRoomUserOperationDependency, delegate: RCSceneRoomUserOperationProtocol?)
+    case gift(dependency: RCSceneGiftDependency, delegate: RCSceneGiftViewControllerDelegate)
     case messageList
     case privateChat(userId: String)
     case masterSeatOperation(userid: String, isMute: Bool, delegate: VoiceRoomMasterSeatOperationProtocol)
@@ -29,14 +29,14 @@ public enum RadioRoomRouter: Route {
     case changeBackground(imageList: [String], delegate: ChangeBackgroundImageProtocol)
 }
 
-public class RadioRoomCoordinator: NavigationCoordinator<RadioRoomRouter> {
+class RadioRoomCoordinator: NavigationCoordinator<RadioRoomRouter> {
 
-    public init(rootViewController: UINavigationController) {
+    init(rootViewController: UINavigationController) {
         super.init(rootViewController: rootViewController)
         radioRouter = strongRouter
     }
     
-    public override func prepareTransition(for route: RadioRoomRouter) -> NavigationTransition {
+    override func prepareTransition(for route: RadioRoomRouter) -> NavigationTransition {
         switch route {
         case let .inputPassword(type, delegate):
             let vc = VoiceRoomPasswordViewController(type: type, delegate: delegate)
@@ -49,19 +49,19 @@ public class RadioRoomCoordinator: NavigationCoordinator<RadioRoomRouter> {
             vc.modalPresentationStyle = .overFullScreen
             return .present(vc)
         case let .userList(room, delegate):
-            let vc = SceneRoomUserListViewController(room: room, delegate: delegate)
+            let vc = RCSceneRoomUsersViewController(room: room, delegate: delegate)
             let nav = UINavigationController(rootViewController: vc)
             nav.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white]
             nav.modalTransitionStyle = .coverVertical
             nav.modalPresentationStyle = .overFullScreen
             return .present(nav)
         case let .manageUser(dependency, delegate):
-            let vc = UserOperationViewController(dependency: dependency as! UserOperationDependency, delegate: delegate)
+            let vc = RCSceneRoomUserOperationViewController(dependency: dependency, delegate: delegate)
             vc.modalTransitionStyle = .coverVertical
             vc.modalPresentationStyle = .popover
             return .present(vc)
         case let .gift(dependency, delegate):
-            let vc = VoiceRoomGiftViewController(dependency: dependency, delegate: delegate)
+            let vc = RCSceneGiftViewController(dependency: dependency, delegate: delegate)
             vc.modalTransitionStyle = .crossDissolve
             vc.modalPresentationStyle = .overFullScreen
             return .present(vc)

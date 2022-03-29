@@ -257,7 +257,7 @@ extension RCRadioRoomViewController: RCRadioRoomKVDelegate {
     }
     
     func roomKVDidChanged(seating: Bool) {
-        SceneRoomManager.shared.seatlist = [roomInfo.userId]
+        SceneRoomManager.shared.seats = [roomInfo.userId]
         roomOwnerView.update(seat: seating ? roomInfo.userId : nil)
     }
     

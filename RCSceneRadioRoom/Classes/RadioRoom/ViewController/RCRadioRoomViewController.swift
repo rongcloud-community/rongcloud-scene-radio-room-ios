@@ -38,7 +38,7 @@ final class RCRadioRoomViewController: RCModuleViewController {
     
     private(set) lazy var roomKVState = RCRadioRoomKVState(roomInfo)
     
-    dynamic var managers = [VoiceRoomUser]()
+    dynamic var managers = [RCSceneRoomUser]()
     
     private let musicInfoBubbleView = RCMusicEngine.musicInfoBubbleView
 
@@ -46,15 +46,14 @@ final class RCRadioRoomViewController: RCModuleViewController {
     
     weak var roomContainerAction: RCRoomContainerAction?
     
-    var roomInfo: VoiceRoom
+    var roomInfo: RCSceneRoom
     let isCreate: Bool
     
-    init(_ roomInfo: VoiceRoom, isCreate: Bool = false) {
+    init(_ roomInfo: RCSceneRoom, isCreate: Bool = false) {
         self.roomInfo = roomInfo
         self.isCreate = isCreate
         DelegateImpl.instance.roomId = roomInfo.roomId
         DataSourceImpl.instance.roomId = roomInfo.roomId
-        PlayerImpl.instance.type = .radio
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -83,9 +82,7 @@ final class RCRadioRoomViewController: RCModuleViewController {
         handleCommandMessage(message)
     }
     //处理音乐消息同步指令消息
-    func handleCommandMessage(_ message: RCMessage) {
-        RoomMessageHandlerManager.handleMessage(message, musicInfoBubbleView)
-    }
+    func handleCommandMessage(_ message: RCMessage) {}
     //组件化重构
     func radioJoinRoom(_ completion: @escaping (Result<Void, ReactorError>) -> Void) {
         SVProgressHUD.show()

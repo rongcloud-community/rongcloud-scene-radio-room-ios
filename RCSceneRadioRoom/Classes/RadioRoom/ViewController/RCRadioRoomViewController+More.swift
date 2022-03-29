@@ -66,7 +66,7 @@ extension RCRadioRoomViewController: RCSceneLeaveViewProtocol {
         SVProgressHUD.show()
         radioRoomService.closeRoom(roomId: roomInfo.roomId) { result in
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-                switch result.map(AppResponse.self) {
+                switch result.map(RCSceneResponse.self) {
                 case let .success(response):
                     if response.validate() {
                         SVProgressHUD.showSuccess(withStatus: "直播结束，房间已关闭")

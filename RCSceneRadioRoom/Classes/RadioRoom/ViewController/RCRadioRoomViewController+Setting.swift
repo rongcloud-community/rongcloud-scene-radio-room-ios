@@ -83,7 +83,7 @@ extension RCRadioRoomViewController {
             SVProgressHUD.showError(withStatus: title + "失败")
         }
         radioRoomService.setRoomType(roomId: roomInfo.roomId, isPrivate: isPrivate, password: password) { result in
-            switch result.map(AppResponse.self) {
+            switch result.map(RCSceneResponse.self) {
             case let .success(response):
                 if response.validate() {
                     onSuccess()
@@ -97,7 +97,7 @@ extension RCRadioRoomViewController {
     /// 房间名称
     func roomUpdate(name: String) {
         radioRoomService.setRoomName(roomId: roomInfo.roomId, name: name) { result in
-            switch result.map(AppResponse.self) {
+            switch result.map(RCSceneResponse.self) {
             case let .success(response):
                 if response.validate() {
                     SVProgressHUD.showSuccess(withStatus: "更新房间名称成功")
@@ -112,7 +112,7 @@ extension RCRadioRoomViewController {
     }
     /// 房间背景
     func modifyRoomBackgroundDidClick() {
-        radioRouter.trigger(.changeBackground(imageList: SceneRoomManager.shared.backgroundlist, delegate: self))
+        radioRouter.trigger(.changeBackground(imageList: SceneRoomManager.shared.backgrounds, delegate: self))
     }
     /// 音乐
     func musicDidClick() {
@@ -129,7 +129,7 @@ extension RCRadioRoomViewController: ChangeBackgroundImageProtocol {
         roomKVState.update(roomBGName: urlSuffix)
         NotificationNameRoomBackgroundUpdated.post((roomInfo.roomId, urlSuffix))
         radioRoomService.updateRoomBackground(roomId: roomInfo.roomId, backgroundUrl: urlSuffix) { result in
-            switch result.map(AppResponse.self) {
+            switch result.map(RCSceneResponse.self) {
             case let .success(response):
                 if response.validate() {
                     SVProgressHUD.showSuccess(withStatus: "更新房间背景成功")

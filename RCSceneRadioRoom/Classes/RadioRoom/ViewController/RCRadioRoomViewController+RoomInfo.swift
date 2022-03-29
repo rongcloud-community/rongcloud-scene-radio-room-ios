@@ -27,7 +27,7 @@ extension RCRadioRoomViewController {
     
     func fetchRoomStatus() {
         radioRoomService.roomInfo(roomId: roomInfo.roomId) { [weak self] result in
-            switch result.map(RCNetworkWapper<VoiceRoom>.self) {
+            switch result.map(RCNetworkWrapper<RCSceneRoom>.self) {
             case let .success(model):
                 if model.data?.stop == true {
                     self?.roomDidSuspend()
@@ -50,9 +50,9 @@ extension RCRadioRoomViewController: RoomInfoViewClickProtocol {
     }
     
     func didFollowRoomUser(_ follow: Bool) {
-        UserInfoDownloaded.shared.refreshUserInfo(userId: roomInfo.userId) { followUser in
+        RCSceneUserManager.shared.refreshUserInfo(userId: roomInfo.userId) { followUser in
             guard follow else { return }
-            UserInfoDownloaded.shared.fetchUserInfo(userId: Environment.currentUserId) { [weak self] user in
+            RCSceneUserManager.shared.fetchUserInfo(userId: Environment.currentUserId) { [weak self] user in
                 let message = RCChatroomFollow()
                 message.userInfo = user.rcUser
                 message.targetUserInfo = followUser.rcUser

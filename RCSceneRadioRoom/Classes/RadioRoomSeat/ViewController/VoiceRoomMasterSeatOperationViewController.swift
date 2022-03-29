@@ -48,7 +48,7 @@ class VoiceRoomMasterSeatOperationViewController: UIViewController {
         popView.snp.makeConstraints {
             $0.left.bottom.right.equalToSuperview()
         }
-        UserInfoDownloaded.shared.fetchUserInfo(userId: userId) { [weak self] user in
+        RCSceneUserManager.shared.fetchUserInfo(userId: userId) { [weak self] user in
             self?.popView.updateView(user: user)
         }
         if isMute || RCVoiceRoomEngine.sharedInstance().isDisableAudioRecording() {

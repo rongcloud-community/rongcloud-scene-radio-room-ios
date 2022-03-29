@@ -12,7 +12,7 @@ final class RCRadioRoomSuspendView: UIView {
     
     var continueLive: (() -> Void)?
     
-    init(_ roomInfo: VoiceRoom) {
+    init(_ roomInfo: RCSceneRoom) {
         super.init(frame: .zero)
         let subView = roomInfo.isOwner ?
             RCRadioRoomSuspendBroadcasterView(onContinueButtonClicked) :

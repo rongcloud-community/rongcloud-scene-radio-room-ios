@@ -13,7 +13,7 @@ import RCSceneGift
 
 struct managersWrapper: Codable {
     let code: Int
-    let data: [VoiceRoomUser]?
+    let data: [RCSceneRoomUser]?
 }
 
 extension RCRadioRoomViewController {
@@ -56,7 +56,7 @@ extension RCRadioRoomViewController {
     private func on(_ userId: String, kickOut targetId: String) {
         guard targetId == Environment.currentUserId else { return }
         if managers.contains(where: { $0.userId == userId }) {
-            UserInfoDownloaded.shared.fetchUserInfo(userId: userId) { user in
+            RCSceneUserManager.shared.fetchUserInfo(userId: userId) { user in
                 SVProgressHUD.showInfo(withStatus: "您被管理员\(user.userName)踢出房间")
             }
         } else {
@@ -67,11 +67,11 @@ extension RCRadioRoomViewController {
 }
 
 // MARK: - Owner Click User Seat Pop view Deleagte
-extension RCRadioRoomViewController: UserOperationProtocol {
+extension RCRadioRoomViewController: RCSceneRoomUserOperationProtocol {
     /// 踢出房间
     func kickoutRoom(userId: String) {
         let ids = [Environment.currentUserId, userId]
-        UserInfoDownloaded.shared.fetch(ids) { users in
+        RCSceneUserManager.shared.fetch(ids) { users in
             let event = RCChatroomKickOut()
             event.userId = users[0].userId
             event.userName = users[0].userName
@@ -83,7 +83,7 @@ extension RCRadioRoomViewController: UserOperationProtocol {
     
     func didSetManager(userId: String, isManager: Bool) {
         fetchmanagers()
-        UserInfoDownloaded.shared.fetchUserInfo(userId: userId) { user in
+        RCSceneUserManager.shared.fetchUserInfo(userId: userId) { user in
             let event = RCChatroomAdmin()
             event.userId = user.userId
             event.userName = user.userName
@@ -116,16 +116,16 @@ extension RCRadioRoomViewController: UserOperationProtocol {
             }
             return
         }
-        let dependency = VoiceRoomGiftDependency(room: roomInfo,
+        let dependency = RCSceneGiftDependency(room: roomInfo,
                                                  seats: [],
                                                  userIds: [userId])
         radioRouter.trigger(.gift(dependency: dependency, delegate: self))
     }
     
     func didFollow(userId: String, isFollow: Bool) {
-        UserInfoDownloaded.shared.refreshUserInfo(userId: userId) { followUser in
+        RCSceneUserManager.shared.refreshUserInfo(userId: userId) { followUser in
             guard isFollow else { return }
-            UserInfoDownloaded.shared.fetchUserInfo(userId: Environment.currentUserId) { [weak self] user in
+            RCSceneUserManager.shared.fetchUserInfo(userId: Environment.currentUserId) { [weak self] user in
                 let message = RCChatroomFollow()
                 message.userInfo = user.rcUser
                 message.targetUserInfo = followUser.rcUser

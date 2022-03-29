@@ -157,7 +157,7 @@ class VoiceRoomSeatCollectionViewCell: UICollectionViewCell, Reusable {
         radarView.stop()
     }
     
-    func update(seatInfo: RCVoiceSeatInfo, index: Int, managers: [VoiceRoomUser], giftValues: [String: Int]) {
+    func update(seatInfo: RCVoiceSeatInfo, index: Int, managers: [RCSceneRoomUser], giftValues: [String: Int]) {
         self.seatInfo = seatInfo
         switch seatInfo.status {
         case .using: ()
@@ -180,7 +180,7 @@ class VoiceRoomSeatCollectionViewCell: UICollectionViewCell, Reusable {
         if let userId = seatInfo.userId {
             starImageView.isHidden = !(managers.contains { $0.userId == userId })
             //avatarImageView.image = RCSCAsset.Images.defaultAvatar.image
-            UserInfoDownloaded.shared.fetchUserInfo(userId: userId) { [weak self] user in
+            RCSceneUserManager.shared.fetchUserInfo(userId: userId) { [weak self] user in
                 self?.nameLabel.text = user.userName
                 self?.avatarImageView.kf.setImage(with: URL(string: user.portraitUrl), placeholder: RCSCAsset.Images.defaultAvatar.image, completionHandler: { result in
                     if self?.seatInfo?.userId == seatInfo.userId { return }

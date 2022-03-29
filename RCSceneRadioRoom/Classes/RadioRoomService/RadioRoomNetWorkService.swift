@@ -163,7 +163,7 @@ class RadioRoomService {
     }
 }
 
-extension VoiceRoomUser {
+extension RCSceneRoomUser {
     var rcUser: RCUserInfo {
         return RCUserInfo(userId: userId, name: userName, portrait: portraitUrl)
     }

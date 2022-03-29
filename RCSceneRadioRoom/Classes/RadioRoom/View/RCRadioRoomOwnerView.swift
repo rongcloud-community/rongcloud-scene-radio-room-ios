@@ -118,7 +118,7 @@ class RCRadioRoomOwnerView: UIView {
     
     func update(seat userId: String?) {
         if let userId = userId {
-            UserInfoDownloaded.shared.fetchUserInfo(userId: userId) { [weak self] user in
+            RCSceneUserManager.shared.fetchUserInfo(userId: userId) { [weak self] user in
                 self?.avatarImageView.kf.setImage(with: URL(string: user.portraitUrl), placeholder: RCSCAsset.Images.defaultAvatar.image)
                 self?.nameLabel.text = user.userName
             }

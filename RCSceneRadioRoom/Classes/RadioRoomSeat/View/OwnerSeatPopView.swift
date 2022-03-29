@@ -111,7 +111,7 @@ class OwnerSeatPopView: UIView {
         muteSeatClick()
     }
     
-    func updateView(user: VoiceRoomUser) {
+    func updateView(user: RCSceneRoomUser) {
         avatarImageView.kf.setImage(with: URL(string: user.portraitUrl), placeholder: RCSCAsset.Images.defaultAvatar.image)
     }
 }

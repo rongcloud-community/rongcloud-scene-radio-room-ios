@@ -71,8 +71,8 @@ class SceneRoomInfoView: UIView {
         return room.roomType != 2
     }
     
-    private let room: VoiceRoom
-    init(_ room: VoiceRoom) {
+    private let room: RCSceneRoom
+    init(_ room: RCSceneRoom) {
         self.room = room
         super.init(frame: .zero)
         
@@ -96,7 +96,7 @@ class SceneRoomInfoView: UIView {
         roundCorners(corners: [.topRight, .bottomRight], radius: 20.0)
     }
     
-    func updateRoom(info: VoiceRoom) {
+    func updateRoom(info: RCSceneRoom) {
         nameLabel.text = info.roomName
         idLabel.text = "ID " + String(info.id)
         updateRoomUserNumber()
@@ -114,7 +114,7 @@ class SceneRoomInfoView: UIView {
     }
     
     @objc func handleViewClick() {
-        if let delegate = controller as? UserOperationProtocol {
+        if let delegate = controller as? RCSceneRoomUserOperationProtocol {
             radioRouter.trigger(.userList(room: room, delegate: delegate))
         } else {
             delegate?.roomInfoDidClick()
@@ -193,7 +193,7 @@ extension SceneRoomInfoView {
 extension SceneRoomInfoView {
     private func fetchUserInfo() {
         if room.isOwner { return }
-        UserInfoDownloaded.shared.refreshUserInfo(userId: room.userId) { [weak self] user in
+        RCSceneUserManager.shared.refreshUserInfo(userId: room.userId) { [weak self] user in
             guard let self = self else { return }
             self.updateFollow(user.isFollow)
         }
@@ -203,7 +203,7 @@ extension SceneRoomInfoView {
         let userId = room.userId
         let follow = !isFollow
         radioRoomService.follow(userId: userId) { [weak self] result in
-            switch result.map(AppResponse.self) {
+            switch result.map(RCSceneResponse.self) {
             case let .success(res):
                 if res.validate() {
                     self?.updateFollow(follow)

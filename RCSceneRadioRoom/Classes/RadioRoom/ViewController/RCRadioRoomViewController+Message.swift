@@ -14,7 +14,7 @@ import RCSceneRoom
 
 extension RCRadioRoomViewController {
     @_dynamicReplacement(for: managers)
-    private var chat_managers: [VoiceRoomUser] {
+    private var chat_managers: [RCSceneRoomUser] {
         get { managers }
         set {
             managers = newValue
@@ -46,7 +46,7 @@ extension RCRadioRoomViewController {
 
 extension RCRadioRoomViewController {
     func sendJoinRoomMessage() {
-        UserInfoDownloaded.shared.fetchUserInfo(userId: Environment.currentUserId) { user in
+        RCSceneUserManager.shared.fetchUserInfo(userId: Environment.currentUserId) { user in
             let event = RCChatroomEnter()
             event.userId = user.userId
             event.userName = user.userName
@@ -55,7 +55,7 @@ extension RCRadioRoomViewController {
     }
     
     func sendLeaveRoomMessage() {
-        UserInfoDownloaded.shared.fetchUserInfo(userId: Environment.currentUserId) { user in
+        RCSceneUserManager.shared.fetchUserInfo(userId: Environment.currentUserId) { user in
             let event = RCChatroomLeave()
             event.userId = user.userId
             event.userName = user.userName
@@ -103,13 +103,13 @@ extension RCRadioRoomViewController: RCChatroomSceneEventProtocol {
         }()
         let userSeatIndex = userRole == .creator ? 0 : nil
         let userSeatMute = userRole == .creator ? roomKVState.mute : nil
-        let dependency = UserOperationDependency(room: roomInfo,
+        let dependency = RCSceneRoomUserOperationDependency(room: roomInfo,
                                                  userId: eventId,
                                                  userRole: userRole,
                                                  userSeatIndex: userSeatIndex,
                                                  userSeatMute: userSeatMute,
                                                  userSeatLock: false)
-        let controller = UserOperationViewController(dependency: dependency, delegate: self)
+        let controller = RCSceneRoomUserOperationViewController(dependency: dependency, delegate: self)
         present(controller, animated: false)
     }
 }

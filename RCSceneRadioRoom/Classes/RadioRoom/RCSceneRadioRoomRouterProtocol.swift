@@ -10,11 +10,11 @@ import RCSceneFoundation
 import RCSceneGift
 
 protocol RCSceneRadioRoomRouterProtocol {
-    func inputPassword(type: PasswordViewType, delegate: InputPasswordProtocol?)
-    func userList(room: VoiceRoom, delegate: UserOperationProtocol)
+    func inputPassword(type: RCSceneRoomPasswordType, delegate: RCSceneRoomPasswordProtocol?)
+    func userList(room: RCSceneRoom, delegate: RCSceneRoomUserOperationProtocol)
     func notice(modify: Bool, notice: String, delegate: VoiceRoomNoticeDelegate)
-    func manageUser(dependency: Any?, delegate: UserOperationProtocol?)
-    func gift(dependency: Any?, delegate: VoiceRoomGiftViewControllerDelegate)
+    func manageUser(dependency: Any?, delegate: RCSceneRoomUserOperationProtocol?)
+    func gift(dependency: Any?, delegate: RCSceneGiftViewControllerDelegate)
     func messageList()
     func privateChat(userId: String)
     func masterSeatOperation(userid: String, isMute: Bool, delegate: VoiceRoomMasterSeatOperationProtocol)
@@ -23,11 +23,11 @@ protocol RCSceneRadioRoomRouterProtocol {
 }
 
 extension RCSceneRadioRoomRouterProtocol {
-    func inputPassword(type: PasswordViewType, delegate: InputPasswordProtocol?) {}
-    func userList(dependency: Any?, delegate: UserOperationProtocol) {}
+    func inputPassword(type: RCSceneRoomPasswordType, delegate: RCSceneRoomPasswordProtocol?) {}
+    func userList(dependency: Any?, delegate: RCSceneRoomUserOperationProtocol) {}
     func notice(modify: Bool, notice: String, delegate: VoiceRoomNoticeDelegate) {}
-    func manageUser(dependency: Any?, delegate: UserOperationProtocol?) {}
-    func gift(dependency: Any?, delegate: VoiceRoomGiftViewControllerDelegate) {}
+    func manageUser(dependency: Any?, delegate: RCSceneRoomUserOperationProtocol?) {}
+    func gift(dependency: Any?, delegate: RCSceneGiftViewControllerDelegate) {}
     func messageList() {}
     func privateChat(userId: String) {}
     func masterSeatOperation(userid: String, isMute: Bool, delegate: VoiceRoomMasterSeatOperationProtocol) {}
