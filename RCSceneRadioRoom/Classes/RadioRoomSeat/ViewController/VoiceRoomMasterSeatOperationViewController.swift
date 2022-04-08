@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import RCSceneService
+
 
 public protocol VoiceRoomMasterSeatOperationProtocol: AnyObject {
     func didMasterLeaveButtonClicked()

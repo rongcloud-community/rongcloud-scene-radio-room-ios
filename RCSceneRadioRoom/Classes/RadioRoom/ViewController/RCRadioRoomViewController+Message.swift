@@ -6,9 +6,6 @@
 //
 
 import SVProgressHUD
-import RCSceneMessage
-import RCSceneService
-import RCSceneFoundation
 import RCSceneChatroomKit
 import RCSceneRoom
 

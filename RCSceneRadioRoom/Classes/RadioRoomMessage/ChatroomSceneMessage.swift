@@ -7,9 +7,6 @@
 
 import Foundation
 import RCSceneChatroomKit
-import RCSceneFoundation
-import RCSceneService
-import RCSceneMessage
 import SVProgressHUD
 
 struct ChatroomError: Error, LocalizedError {

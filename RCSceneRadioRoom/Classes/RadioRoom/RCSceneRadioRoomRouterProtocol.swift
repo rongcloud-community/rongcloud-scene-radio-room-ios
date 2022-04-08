@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import RCSceneFoundation
-import RCSceneGift
 
 protocol RCSceneRadioRoomRouterProtocol {
     func inputPassword(type: RCSceneRoomPasswordType, delegate: RCSceneRoomPasswordProtocol?)

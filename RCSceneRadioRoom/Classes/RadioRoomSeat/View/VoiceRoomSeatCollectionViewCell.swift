@@ -8,7 +8,7 @@
 import UIKit
 import Reusable
 import Pulsator
-import RCSceneService
+
 
 class VoiceRoomSeatCollectionViewCell: UICollectionViewCell, Reusable {
     private lazy var gradientLayer: CAGradientLayer = {

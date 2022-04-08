@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import RCSceneService
+
 
 fileprivate let kRCRadioRoomKVRoomNameKey   = "RCRadioRoomKVRoomNameKey"
 fileprivate let kRCRadioRoomKVSeatingKey    = "RCRadioRoomKVSeatingKey"

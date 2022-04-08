@@ -6,8 +6,8 @@
 //
 
 import UIKit
-import RCSceneService
-import RCSceneFoundation
+
+
 
 protocol RoomInfoViewClickProtocol: AnyObject {
     func roomInfoDidClick()

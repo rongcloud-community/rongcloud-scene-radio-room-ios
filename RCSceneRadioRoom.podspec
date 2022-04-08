@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   
   # 1 - Info
   s.name             = 'RCSceneRadioRoom'
-  s.version          = '0.0.2.2'
+  s.version          = '0.0.2.3'
   s.summary          = 'Scene Radio Room'
   s.description      = "Scene Radio Room module"
   s.homepage         = 'https://github.com/rongcloud'
@@ -37,10 +37,11 @@ Pod::Spec.new do |s|
   s.dependency 'SVProgressHUD'
   s.dependency 'IQKeyboardManager'
   
-  s.dependency 'RCSceneRoom', '>= 0.0.2.3'
-  s.dependency 'RCSceneGift'
-  s.dependency 'RCSceneMusic'
-  s.dependency 'RCSceneRoomSetting'
+  s.dependency 'RCSceneRoom/RCSceneRoom'
+  s.dependency 'RCSceneRoom/RCSceneGift'
+  s.dependency 'RCSceneRoom/RCSceneMusic'
+  s.dependency 'RCSceneRoom/RCSceneRoomSetting'
+  
   s.dependency 'RCVoiceRoomLib'
   
 end

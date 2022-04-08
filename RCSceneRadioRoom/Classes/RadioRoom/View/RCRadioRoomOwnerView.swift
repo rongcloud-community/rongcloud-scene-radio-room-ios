@@ -6,9 +6,9 @@
 //
 
 import Pulsator
-import RCSceneFoundation
+
 import Kingfisher
-import RCSceneService
+
 
 protocol RCRadioRoomOwnerViewProtocol: AnyObject {
     func masterViewDidClick()

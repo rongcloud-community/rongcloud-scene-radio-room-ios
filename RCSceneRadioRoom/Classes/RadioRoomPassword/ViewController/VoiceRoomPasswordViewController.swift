@@ -6,8 +6,8 @@
 //
 
 import SVProgressHUD
-import RCSceneService
-import RCSceneFoundation
+
+
 
 class VoiceRoomPasswordViewController: UIViewController {
     weak var delegate: RCSceneRoomPasswordProtocol?

@@ -8,8 +8,6 @@
 import UIKit
 import XCoordinator
 import RCSceneRoom
-import RCSceneService
-
 
 public func RCRadioRoomController(room: RCSceneRoom, creation: Bool = false) -> RCRoomCycleProtocol {
     let controller = RCRadioRoomViewController(room, isCreate: creation)

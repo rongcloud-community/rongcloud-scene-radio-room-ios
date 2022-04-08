@@ -6,9 +6,6 @@
 //
 
 import SVProgressHUD
-import RCSceneRoomSetting
-import RCSceneMusic
-import RCSceneService
 import RCSceneRoom
 
 extension RCRadioRoomViewController {

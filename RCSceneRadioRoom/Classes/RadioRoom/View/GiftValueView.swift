@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import RCSceneFoundation
+
 
 class GiftValueView: UIView {
     private lazy var heartImageView: UIImageView = {

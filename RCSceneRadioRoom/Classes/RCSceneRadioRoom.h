@@ -20,6 +20,4 @@ FOUNDATION_EXPORT const unsigned char RCSceneRadioRoomVersionString[];
 #import <RCVoiceRoomLib/RCVoiceRoomLib.h>
 #import <RCSceneChatroomKit/RCSceneChatroomKit.h>
 
-@import RCSceneService;
 @import RCSceneRoom;
-@import RCSceneFoundation;

@@ -7,8 +7,8 @@
 
 import UIKit
 import SVProgressHUD
-import RCSceneFoundation
-import RCSceneService
+
+
 
 protocol VoiceRoomForbiddenDelegate: AnyObject {
     func forbiddenListDidChange()
@@ -23,7 +23,7 @@ class VoiceRoomForbiddenViewController: UIViewController {
     private let roomId: String
     private var list = [ForbiddenCellType]()
     private lazy var collectionView: UICollectionView = {
-        let layout = AlignedCollectionViewFlowLayout(horizontalAlignment: .left, verticalAlignment: .top)
+        let layout = RCSceneFlowLayout(horizontalAlignment: .left, verticalAlignment: .top)
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         layout.itemSize = CGSize(width: 100, height: 30)
         let instance = UICollectionView(frame: .zero, collectionViewLayout: layout)

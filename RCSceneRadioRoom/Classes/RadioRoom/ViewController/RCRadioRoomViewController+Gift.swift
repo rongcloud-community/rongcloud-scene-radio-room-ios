@@ -6,9 +6,6 @@
 //
 
 import UIKit
-import RCSceneMessage
-import RCSceneService
-import RCSceneGift
 
 extension RCRadioRoomViewController {
     @_dynamicReplacement(for: m_viewDidLoad)
