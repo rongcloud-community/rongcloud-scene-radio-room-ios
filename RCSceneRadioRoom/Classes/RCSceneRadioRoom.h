@@ -15,9 +15,7 @@ FOUNDATION_EXPORT const unsigned char RCSceneRadioRoomVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <RCSceneRadioRoom/PublicHeader.h>
 
-#import <RongIMKit/RongIMKit.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <RCVoiceRoomLib/RCVoiceRoomLib.h>
-#import <RCSceneChatroomKit/RCSceneChatroomKit.h>
 
 @import RCSceneRoom;
