@@ -79,7 +79,8 @@ final class RCRadioRoomViewController: RCModuleViewController {
     //处理音乐消息同步指令消息
     func handleCommandMessage(_ message: RCMessage) {}
     //组件化重构
-    func radioJoinRoom(_ completion: @escaping (Result<Void, ReactorError>) -> Void) {
+    func radioJoinRoom(_ completion: @escaping (Result<Void, RCSceneError>) -> Void) {
+        RCSensorAction.joinRoom(roomInfo, enableMic: false, enableCamera: false).trigger()
         SVProgressHUD.show()
         dispatch_join() { [unowned self] result in
             switch result {
@@ -101,7 +102,8 @@ final class RCRadioRoomViewController: RCModuleViewController {
         }
     }
     
-    func radioLeaveRoom(_ completion: @escaping (Result<Void, ReactorError>) -> Void) {
+    func radioLeaveRoom(_ completion: @escaping (Result<Void, RCSceneError>) -> Void) {
+        RCSensorAction.quitRoom(roomInfo, enableMic: enableMic, enableCamera: false).trigger()
         clearMusicData()
         sendLeaveRoomMessage()
         dispatch_leave { [unowned self] result in
@@ -111,8 +113,6 @@ final class RCRadioRoomViewController: RCModuleViewController {
             }
             DataSourceImpl.instance.clear()
             PlayerImpl.instance.clear()
-            // TODO Call Status
-//            RCCall.shared().canIncomingCall = true
             SceneRoomManager.shared.currentRoom = nil
             completion(result)
         }
@@ -120,6 +120,13 @@ final class RCRadioRoomViewController: RCModuleViewController {
     
     func radioDescendantViews() -> [UIView] {
         return [messageView.tableView]
+    }
+    
+    var enableMic: Bool {
+        guard roomInfo.isOwner else {
+            return false
+        }
+        return !roomKVState.mute && roomKVState.seating
     }
 }
 

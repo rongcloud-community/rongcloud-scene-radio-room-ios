@@ -23,7 +23,7 @@ extension RCRadioRoomViewController {
     
     func fetchRoomStatus() {
         radioRoomService.roomInfo(roomId: roomInfo.roomId) { [weak self] result in
-            switch result.map(RCNetworkWrapper<RCSceneRoom>.self) {
+            switch result.map(RCSceneWrapper<RCSceneRoom>.self) {
             case let .success(model):
                 if model.data?.stop == true {
                     self?.roomDidSuspend()

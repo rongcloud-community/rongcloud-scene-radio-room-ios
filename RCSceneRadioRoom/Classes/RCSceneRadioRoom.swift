@@ -10,8 +10,8 @@ import XCoordinator
 import RCSceneRoom
 
 public func RCRadioRoomController(room: RCSceneRoom, creation: Bool = false) -> RCRoomCycleProtocol {
-    let controller = RCRadioRoomViewController(room, isCreate: creation)
-    return controller
+    RCSceneIMMessageRegistration()
+    return RCRadioRoomViewController(room, isCreate: creation)
 }
 
 extension RCRadioRoomViewController: RCRoomCycleProtocol {
@@ -23,15 +23,28 @@ extension RCRadioRoomViewController: RCRoomCycleProtocol {
         self.floatingManager = action
     }
     
-    func joinRoom(_ completion: @escaping (Result<Void, ReactorError>) -> Void) {
+    func joinRoom(_ completion: @escaping (Result<Void, RCSceneError>) -> Void) {
         self.radioJoinRoom(completion)
     }
     
-    func leaveRoom(_ completion: @escaping (Result<Void, ReactorError>) -> Void) {
+    func leaveRoom(_ completion: @escaping (Result<Void, RCSceneError>) -> Void) {
         self.radioLeaveRoom(completion)
     }
     
     func descendantViews() -> [UIView] {
         return self.radioDescendantViews()
     }
+}
+
+fileprivate func RCSceneIMMessageRegistration() {
+    if UserDefaults.standard.bool(forKey: "RCSceneIMMessageRegistration") {
+        return
+    }
+    UserDefaults.standard.set(true, forKey: "RCSceneIMMessageRegistration")
+    
+    RCChatroomMessageCenter.registerMessageTypes()
+    RCIM.shared().registerMessageType(RCGiftBroadcastMessage.self)
+    RCIM.shared().registerMessageType(RCPKGiftMessage.self)
+    RCIM.shared().registerMessageType(RCPKStatusMessage.self)
+    RCIM.shared().registerMessageType(RCShuMeiMessage.self)
 }

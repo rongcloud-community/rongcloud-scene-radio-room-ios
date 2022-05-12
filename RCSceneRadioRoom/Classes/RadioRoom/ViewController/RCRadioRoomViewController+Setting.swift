@@ -38,6 +38,7 @@ extension RCRadioRoomViewController {
 
 extension RCRadioRoomViewController: RCSceneRoomSettingProtocol {
     func eventWillTrigger(_ item: Item) -> Bool {
+        RCSensorAction.settingClick(roomInfo, item: item).trigger()
         switch item {
         case .forbidden:
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

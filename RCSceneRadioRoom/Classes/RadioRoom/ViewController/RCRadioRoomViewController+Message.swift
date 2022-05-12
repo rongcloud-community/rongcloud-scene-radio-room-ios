@@ -35,10 +35,6 @@ extension RCRadioRoomViewController {
         statement.extra = "statement"
         messageView.addMessage(statement)
     }
-    
-    @objc private func handlePrivateMessageButtonClick() {
-        radioRouter.trigger(.messageList)
-    }
 }
 
 extension RCRadioRoomViewController {

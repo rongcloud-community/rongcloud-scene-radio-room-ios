@@ -39,6 +39,7 @@ extension RCRadioRoomViewController {
     }
     
     @objc func handleGiftButtonClick() {
+        RCSensorAction.giftClick(roomInfo).trigger()
         let dependency = RCSceneGiftDependency(room: roomInfo,
                                                  seats: [roomInfo.userId],
                                                  userIds: [roomInfo.userId])

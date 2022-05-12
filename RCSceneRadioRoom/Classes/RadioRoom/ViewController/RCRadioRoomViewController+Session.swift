@@ -37,17 +37,17 @@ extension RCRadioRoomViewController {
 }
 
 extension RCRadioRoomViewController {
-    func dispatch_join(complation: @escaping (Result<Void, ReactorError>) -> Void) {
+    func dispatch_join(complation: @escaping (Result<Void, RCSceneError>) -> Void) {
         let room = roomInfo
         queue.async {
-            var result = Result<Void, ReactorError>.success(())
+            var result = Result<Void, RCSceneError>.success(())
             let semaphore = DispatchSemaphore(value: 0)
             /// 加入聊天室
             RCChatRoomClient.shared()
                 .joinChatRoom(room.roomId, messageCount: -1) {
                     semaphore.signal()
                 } error: { code in
-                    result = .failure(ReactorError("加入聊天室失败:\(code.rawValue)"))
+                    result = .failure(RCSceneError("加入聊天室失败:\(code.rawValue)"))
                     semaphore.signal()
                 }
             let _ = semaphore.wait(timeout: .now() + .seconds(8))
@@ -66,7 +66,7 @@ extension RCRadioRoomViewController {
                     if let rtcRoom = rtcRoom, code == .success || code == .joinToSameRoom {
                         self.rtcRoom = rtcRoom
                     } else {
-                        result = .failure(ReactorError("加入RTC失败:\(code.rawValue)"))
+                        result = .failure(RCSceneError("加入RTC失败:\(code.rawValue)"))
                     }
                     semaphore.signal()
                 }
@@ -83,9 +83,9 @@ extension RCRadioRoomViewController {
         }
     }
     
-    func dispatch_leave(_ complation: @escaping (Result<Void, ReactorError>) -> Void) {
+    func dispatch_leave(_ complation: @escaping (Result<Void, RCSceneError>) -> Void) {
         queue.async { [unowned self] in
-            var result = Result<Void, ReactorError>.success(())
+            var result = Result<Void, RCSceneError>.success(())
             
             let semaphore = DispatchSemaphore(value: 0)
             
@@ -100,7 +100,7 @@ extension RCRadioRoomViewController {
             RCChatRoomClient.shared().quitChatRoom(roomInfo.roomId) {
                 semaphore.signal()
             } error: { code in
-                result = .failure(ReactorError("离开聊天室失败:\(code.rawValue)"))
+                result = .failure(RCSceneError("离开聊天室失败:\(code.rawValue)"))
                 semaphore.signal()
             }
             let _ = semaphore.wait(timeout: .now() + .seconds(8))
@@ -108,7 +108,7 @@ extension RCRadioRoomViewController {
             /// 离开RTC
             RCRTCEngine.sharedInstance().leaveRoom { success, code in
                 if success == false || code != .success {
-                    result = .failure(ReactorError("离开RTC失败:\(code.rawValue)"))
+                    result = .failure(RCSceneError("离开RTC失败:\(code.rawValue)"))
                 }
                 semaphore.signal()
             }
@@ -125,12 +125,12 @@ extension RCRadioRoomViewController {
 
 extension RCRadioRoomViewController {
     
-    func enterSeat(_ completion: @escaping (Result<Void, ReactorError>) -> Void) {
+    func enterSeat(_ completion: @escaping (Result<Void, RCSceneError>) -> Void) {
         guard roomInfo.isOwner, let rtcRoom = rtcRoom else { return completion(.success(())) }
         rtcRoom.localUser
             .publishDefaultLiveStreams { success, code, liveInfo in
                 if success == false || code != .success {
-                    completion(.failure(ReactorError("发布流失败:\(code.rawValue)")))
+                    completion(.failure(RCSceneError("发布流失败:\(code.rawValue)")))
                 } else {
                     completion(.success(()))
                 }
@@ -141,7 +141,7 @@ extension RCRadioRoomViewController {
             .setMicrophoneDisable(roomKVState.mute)
     }
     
-    func leaveSeat(_ completion: @escaping (Result<Void, ReactorError>) -> Void) {
+    func leaveSeat(_ completion: @escaping (Result<Void, RCSceneError>) -> Void) {
         guard roomInfo.isOwner, roomKVState.seating else { return completion(.success(())) }
         roomKVState.leaveSeat()
         RCRTCEngine.sharedInstance()
@@ -150,7 +150,7 @@ extension RCRadioRoomViewController {
         completion(.success(()))
     }
     
-    func listenToTheRadio(_ completion: @escaping (Result<Void, ReactorError>) -> Void) {
+    func listenToTheRadio(_ completion: @escaping (Result<Void, RCSceneError>) -> Void) {
         if roomInfo.isOwner { return }
         guard let stream = rtcRoom?.getCDNStream() else { return }
         view.subviews.forEach { view in
@@ -166,7 +166,7 @@ extension RCRadioRoomViewController {
                 if success {
                     completion(.success(()))
                 } else {
-                    completion(.failure(ReactorError("订阅流失败:\(code.rawValue)")))
+                    completion(.failure(RCSceneError("订阅流失败:\(code.rawValue)")))
                 }
             }
     }

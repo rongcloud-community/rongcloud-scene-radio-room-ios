@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import IQKeyboardManager
-
 
 public protocol VoiceRoomNoticeDelegate: AnyObject {
     func noticeDidModified(notice: String)
@@ -86,13 +84,7 @@ class VoiceRoomNoticeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        IQKeyboardManager.shared().isEnableAutoToolbar = true
         if modify { textView.becomeFirstResponder() }
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        IQKeyboardManager.shared().isEnableAutoToolbar = false
     }
     
     private func buildLayout() {

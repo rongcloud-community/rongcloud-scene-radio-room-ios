@@ -51,6 +51,7 @@ extension RCRadioRoomViewController: RCSceneLeaveViewProtocol {
     
     /// 关闭房间
     func closeRoom() {
+        RCSensorAction.closeRoom(roomInfo, enableMic: enableMic, enableCamera: false).trigger()
         clearMusicData()
         RCCoreClient.shared()
             .sendMessage(.ConversationType_CHATROOM,
