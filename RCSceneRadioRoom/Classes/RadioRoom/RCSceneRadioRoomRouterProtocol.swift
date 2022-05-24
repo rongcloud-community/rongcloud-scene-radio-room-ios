@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import RCSceneRoom
 
 protocol RCSceneRadioRoomRouterProtocol {
-    func inputPassword(type: RCSceneRoomPasswordType, delegate: RCSceneRoomPasswordProtocol?)
+    func inputPassword(completion: RCSRPasswordCompletion)
     func userList(room: RCSceneRoom, delegate: RCSceneRoomUserOperationProtocol)
     func notice(modify: Bool, notice: String, delegate: VoiceRoomNoticeDelegate)
     func manageUser(dependency: Any?, delegate: RCSceneRoomUserOperationProtocol?)
@@ -21,7 +22,7 @@ protocol RCSceneRadioRoomRouterProtocol {
 }
 
 extension RCSceneRadioRoomRouterProtocol {
-    func inputPassword(type: RCSceneRoomPasswordType, delegate: RCSceneRoomPasswordProtocol?) {}
+    func inputPassword(completion: RCSRPasswordCompletion) {}
     func userList(dependency: Any?, delegate: RCSceneRoomUserOperationProtocol) {}
     func notice(modify: Bool, notice: String, delegate: VoiceRoomNoticeDelegate) {}
     func manageUser(dependency: Any?, delegate: RCSceneRoomUserOperationProtocol?) {}

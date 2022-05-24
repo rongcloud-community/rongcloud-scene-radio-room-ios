@@ -36,15 +36,12 @@ extension RCRadioRoomViewController: RCRoomCycleProtocol {
     }
 }
 
+fileprivate var isIMMessageRegister = false
 fileprivate func RCSceneIMMessageRegistration() {
-    if UserDefaults.standard.bool(forKey: "RCSceneIMMessageRegistration") {
-        return
-    }
-    UserDefaults.standard.set(true, forKey: "RCSceneIMMessageRegistration")
-    
+    if isIMMessageRegister { return }
+    isIMMessageRegister = true
     RCChatroomMessageCenter.registerMessageTypes()
     RCIM.shared().registerMessageType(RCGiftBroadcastMessage.self)
     RCIM.shared().registerMessageType(RCPKGiftMessage.self)
     RCIM.shared().registerMessageType(RCPKStatusMessage.self)
-    RCIM.shared().registerMessageType(RCShuMeiMessage.self)
 }

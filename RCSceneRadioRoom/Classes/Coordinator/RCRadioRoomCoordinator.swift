@@ -12,7 +12,7 @@ import RCSceneRoom
 var radioRouter: StrongRouter<RadioRoomRouter>!
 
 public enum RadioRoomRouter: Route {
-    case inputPassword(type: RCSceneRoomPasswordType, delegate: RCSceneRoomPasswordProtocol?)
+    case inputPassword(RCSRPasswordCompletion)
     case notice(modify: Bool = false, notice: String, delegate: VoiceRoomNoticeDelegate)
     case userList(room: RCSceneRoom, delegate: RCSceneRoomUserOperationProtocol)
     case manageUser(dependency: RCSceneRoomUserOperationDependency,
@@ -37,8 +37,9 @@ public class RadioRoomCoordinator: NavigationCoordinator<RadioRoomRouter> {
     
     public override func prepareTransition(for route: RadioRoomRouter) -> NavigationTransition {
         switch route {
-        case let .inputPassword(type, delegate):
-            let vc = VoiceRoomPasswordViewController(type: type, delegate: delegate)
+        case let .inputPassword(completion):
+            let vc = RCSRPasswordViewController()
+            vc.completion = completion
             vc.modalTransitionStyle = .crossDissolve
             vc.modalPresentationStyle = .overFullScreen
             return .push(vc)

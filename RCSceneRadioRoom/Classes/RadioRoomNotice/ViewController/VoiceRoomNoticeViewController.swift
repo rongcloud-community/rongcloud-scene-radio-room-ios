@@ -60,7 +60,7 @@ class VoiceRoomNoticeViewController: UIViewController {
         instance.layer.borderWidth = 1.0
         instance.layer.borderColor = UIColor(hexString: "#EF499A").cgColor
         instance.setTitleColor(UIColor(hexString: "#EF499A"), for: .normal)
-        instance.addTarget(self, action: #selector(dismissCurrent), for: .touchUpInside)
+        instance.addTarget(self, action: #selector(back), for: .touchUpInside)
         return instance
     }()
     private let modify: Bool
@@ -143,7 +143,12 @@ class VoiceRoomNoticeViewController: UIViewController {
     
     @objc private func handleConfirm() {
         delegate?.noticeDidModified(notice: textView.text)
-        dismissCurrent()
+        back()
+    }
+    
+    @objc
+    private func back() {
+        dismiss(animated: true)
     }
 }
 

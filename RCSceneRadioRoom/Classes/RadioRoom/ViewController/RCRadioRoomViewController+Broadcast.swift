@@ -38,21 +38,14 @@ extension RCRadioRoomViewController: RCRTCBroadcastDelegate {
     }
     
     func broadcastViewDidClick(_ room: RCSceneRoom) {
+        if room.roomId == roomInfo.roomId { return }
         if room.isPrivate == 1 {
-            radioRouter.trigger(.inputPassword(type: .verify(room), delegate: self))
+            radioRouter.trigger(.inputPassword({ [weak self] password in
+                guard password == room.password else { return }
+                self?.roomContainerAction?.switchRoom(room)
+            }))
         } else {
             roomContainerAction?.switchRoom(room)
         }
-    }
-}
-
-extension RCRadioRoomViewController: RCSceneRoomPasswordProtocol {
-    func passwordDidEnter(password: String) {
-        
-    }
-    
-    func passwordDidVerify(_ room: RCSceneRoom) {
-        if room.roomId == roomInfo.roomId { return }
-        roomContainerAction?.switchRoom(room)
     }
 }

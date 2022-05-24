@@ -47,8 +47,6 @@ final class RCRadioRoomViewController: RCModuleViewController {
     init(_ roomInfo: RCSceneRoom, isCreate: Bool = false) {
         self.roomInfo = roomInfo
         self.isCreate = isCreate
-        DelegateImpl.instance.roomId = roomInfo.roomId
-        DataSourceImpl.instance.roomId = roomInfo.roomId
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -59,13 +57,8 @@ final class RCRadioRoomViewController: RCModuleViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupConstraints()
-        PlayerImpl.instance.initializedEarMonitoring()
         bubbleViewAddGesture()
-        if (!roomInfo.isOwner) {
-            DataSourceImpl.instance.fetchRoomPlayingMusicInfo { info in
-                self.musicInfoBubbleView?.info = info;
-            }
-        }
+        RCSceneMusic.join(roomInfo)
     }
     
     deinit {
@@ -104,15 +97,14 @@ final class RCRadioRoomViewController: RCModuleViewController {
     
     func radioLeaveRoom(_ completion: @escaping (Result<Void, RCSceneError>) -> Void) {
         RCSensorAction.quitRoom(roomInfo, enableMic: enableMic, enableCamera: false).trigger()
-        clearMusicData()
+        RCSceneMusic.clear()
         sendLeaveRoomMessage()
         dispatch_leave { [unowned self] result in
-            navigationController?.safe_popToViewController(animated: true)
+            backTrigger()
             if let fm = self.floatingManager {
                 fm.hide()
             }
-            DataSourceImpl.instance.clear()
-            PlayerImpl.instance.clear()
+            RCSceneMusic.clear()
             SceneRoomManager.shared.currentRoom = nil
             completion(result)
         }

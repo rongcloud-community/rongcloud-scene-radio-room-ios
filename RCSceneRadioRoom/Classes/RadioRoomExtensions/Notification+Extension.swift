@@ -9,18 +9,3 @@ import Foundation
 
 let NotificationNameRoomBackgroundUpdated = Notification.Name("NotificationNameRoomBackgroundUpdated")
 let NotificationNameShuMeiKickOut = Notification.Name("NotificationNameShuMeiKickOut")
-
-extension Notification.Name {
-    func addObserver(_ observer: Any,
-                     selector aSelector: Selector,
-                     object anObject: Any? = nil) {
-        NotificationCenter.default.addObserver(observer,
-                                               selector: aSelector,
-                                               name: self,
-                                               object: anObject)
-    }
-    
-    func post(_ object: Any? = nil) {
-        NotificationCenter.default.post(name: self, object: object)
-    }
-}

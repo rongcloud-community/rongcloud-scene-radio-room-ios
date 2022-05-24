@@ -52,7 +52,7 @@ extension RCRadioRoomViewController: RCSceneLeaveViewProtocol {
     /// 关闭房间
     func closeRoom() {
         RCSensorAction.closeRoom(roomInfo, enableMic: enableMic, enableCamera: false).trigger()
-        clearMusicData()
+        RCSceneMusic.clear()
         RCCoreClient.shared()
             .sendMessage(.ConversationType_CHATROOM,
                          targetId: roomInfo.roomId,
@@ -114,14 +114,6 @@ extension RCRadioRoomViewController: RCSceneLeaveViewProtocol {
     
     @objc private func backToRoomList() {
         radioLeaveRoom { _ in }
-    }
-    
-    func clearMusicData() {
-        if (self.roomInfo.isOwner) {
-            DataSourceImpl.instance.clear()
-            PlayerImpl.instance.clear()
-            DelegateImpl.instance.clear()
-        }
     }
 }
 

@@ -7,8 +7,6 @@
 
 import SVProgressHUD
 
-
-
 enum PKStatus: Int {
     case begin = 0
     case pause

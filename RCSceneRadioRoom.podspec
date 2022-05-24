@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   
   # 1 - Info
   s.name             = 'RCSceneRadioRoom'
-  s.version          = '0.0.3'
+  s.version          = '0.0.3.1'
   s.summary          = 'Scene Radio Room'
   s.description      = "Scene Radio Room module"
   s.homepage         = 'https://github.com/rongcloud'
@@ -28,20 +28,10 @@ Pod::Spec.new do |s|
   s.source_files = 'RCSceneRadioRoom/Classes/**/*'
   
   # 5 - dependency
-  s.dependency 'Reusable'
   s.dependency 'Pulsator'
-  s.dependency 'MJRefresh'
-  s.dependency 'SDWebImage'
-  s.dependency 'Kingfisher'
   s.dependency 'XCoordinator'
-  s.dependency 'SVProgressHUD'
-  
-  s.dependency 'RCSceneRoom/RCSceneRoom'
-  s.dependency 'RCSceneRoom/RCSceneGift'
-  s.dependency 'RCSceneRoom/RCSceneMusic'
-  s.dependency 'RCSceneRoom/RCSceneAnalytics'
-  s.dependency 'RCSceneRoom/RCSceneRoomSetting'
-  
   s.dependency 'RCVoiceRoomLib'
+  s.dependency 'RCSceneRoom/RCSceneRoom'
+  s.dependency 'RCSceneRoom/RCSceneAnalytics'
   
 end
