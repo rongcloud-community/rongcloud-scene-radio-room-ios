@@ -58,7 +58,7 @@ final class RCRadioRoomViewController: RCModuleViewController {
         super.viewDidLoad()
         setupConstraints()
         bubbleViewAddGesture()
-        RCSceneMusic.join(roomInfo)
+        RCSceneMusic.join(roomInfo, bubbleView: musicInfoBubbleView!)
     }
     
     deinit {

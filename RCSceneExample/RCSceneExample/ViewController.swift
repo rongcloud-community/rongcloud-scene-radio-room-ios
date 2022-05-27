@@ -7,6 +7,8 @@
 
 import UIKit
 
+import RCSceneRadioRoom
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
