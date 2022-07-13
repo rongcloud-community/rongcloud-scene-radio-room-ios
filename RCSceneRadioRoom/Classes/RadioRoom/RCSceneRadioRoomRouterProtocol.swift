@@ -10,9 +10,9 @@ import RCSceneRoom
 
 protocol RCSceneRadioRoomRouterProtocol {
     func inputPassword(completion: RCSRPasswordCompletion)
-    func userList(room: RCSceneRoom, delegate: RCSceneRoomUserOperationProtocol)
+    func userList(room: RCSceneRoom, delegate: RCSRUserOperationProtocol)
     func notice(modify: Bool, notice: String, delegate: VoiceRoomNoticeDelegate)
-    func manageUser(dependency: Any?, delegate: RCSceneRoomUserOperationProtocol?)
+    func manageUser(dependency: Any?, delegate: RCSRUserOperationProtocol?)
     func gift(dependency: Any?, delegate: RCSceneGiftViewControllerDelegate)
     func messageList()
     func privateChat(userId: String)
@@ -23,9 +23,9 @@ protocol RCSceneRadioRoomRouterProtocol {
 
 extension RCSceneRadioRoomRouterProtocol {
     func inputPassword(completion: RCSRPasswordCompletion) {}
-    func userList(dependency: Any?, delegate: RCSceneRoomUserOperationProtocol) {}
+    func userList(dependency: Any?, delegate: RCSRUserOperationProtocol) {}
     func notice(modify: Bool, notice: String, delegate: VoiceRoomNoticeDelegate) {}
-    func manageUser(dependency: Any?, delegate: RCSceneRoomUserOperationProtocol?) {}
+    func manageUser(dependency: Any?, delegate: RCSRUserOperationProtocol?) {}
     func gift(dependency: Any?, delegate: RCSceneGiftViewControllerDelegate) {}
     func messageList() {}
     func privateChat(userId: String) {}

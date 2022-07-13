@@ -96,13 +96,13 @@ extension RCRadioRoomViewController: RCChatroomSceneEventProtocol {
         }()
         let userSeatIndex = userRole == .creator ? 0 : nil
         let userSeatMute = userRole == .creator ? roomKVState.mute : nil
-        let dependency = RCSceneRoomUserOperationDependency(room: roomInfo,
+        let dependency = RCSRUserOperationDependency(room: roomInfo,
                                                  userId: eventId,
                                                  userRole: userRole,
                                                  userSeatIndex: userSeatIndex,
                                                  userSeatMute: userSeatMute,
                                                  userSeatLock: false)
-        let controller = RCSceneRoomUserOperationViewController(dependency: dependency, delegate: self)
+        let controller = RCSRUserOperationViewController(dependency: dependency, delegate: self)
         present(controller, animated: false)
     }
 }

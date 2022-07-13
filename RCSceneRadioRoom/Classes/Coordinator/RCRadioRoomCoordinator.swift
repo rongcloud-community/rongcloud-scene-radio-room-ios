@@ -14,9 +14,9 @@ var radioRouter: StrongRouter<RadioRoomRouter>!
 public enum RadioRoomRouter: Route {
     case inputPassword(RCSRPasswordCompletion)
     case notice(modify: Bool = false, notice: String, delegate: VoiceRoomNoticeDelegate)
-    case userList(room: RCSceneRoom, delegate: RCSceneRoomUserOperationProtocol)
-    case manageUser(dependency: RCSceneRoomUserOperationDependency,
-                    delegate: RCSceneRoomUserOperationProtocol?)
+    case userList(room: RCSceneRoom, delegate: RCSRUserOperationProtocol)
+    case manageUser(dependency: RCSRUserOperationDependency,
+                    delegate: RCSRUserOperationProtocol?)
     case gift(dependency: RCSceneGiftDependency,
               delegate: RCSceneGiftViewControllerDelegate)
     case messageList
@@ -56,7 +56,7 @@ public class RadioRoomCoordinator: NavigationCoordinator<RadioRoomRouter> {
             nav.modalPresentationStyle = .overFullScreen
             return .present(nav)
         case let .manageUser(dependency, delegate):
-            let vc = RCSceneRoomUserOperationViewController(dependency: dependency, delegate: delegate)
+            let vc = RCSRUserOperationViewController(dependency: dependency, delegate: delegate)
             vc.modalTransitionStyle = .coverVertical
             vc.modalPresentationStyle = .popover
             return .present(vc)

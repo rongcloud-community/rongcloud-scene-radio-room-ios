@@ -114,7 +114,7 @@ class SceneRoomInfoView: UIView {
     }
     
     @objc func handleViewClick() {
-        if let delegate = controller as? RCSceneRoomUserOperationProtocol {
+        if let delegate = controller as? RCSRUserOperationProtocol {
             radioRouter.trigger(.userList(room: room, delegate: delegate))
         } else {
             delegate?.roomInfoDidClick()

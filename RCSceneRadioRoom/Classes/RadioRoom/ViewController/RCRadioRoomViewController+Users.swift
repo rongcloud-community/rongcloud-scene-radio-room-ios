@@ -63,7 +63,7 @@ extension RCRadioRoomViewController {
 }
 
 // MARK: - Owner Click User Seat Pop view Deleagte
-extension RCRadioRoomViewController: RCSceneRoomUserOperationProtocol {
+extension RCRadioRoomViewController: RCSRUserOperationProtocol {
     /// 踢出房间
     func kickoutRoom(userId: String) {
         let ids = [Environment.currentUserId, userId]
