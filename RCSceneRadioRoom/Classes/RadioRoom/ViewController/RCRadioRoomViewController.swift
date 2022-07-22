@@ -66,11 +66,8 @@ final class RCRadioRoomViewController: RCModuleViewController {
     }
     
     ///消息回调，在engine模块中触发
-    dynamic func handleReceivedMessage(_ message: RCMessage) {
-        handleCommandMessage(message)
-    }
-    //处理音乐消息同步指令消息
-    func handleCommandMessage(_ message: RCMessage) {}
+    dynamic func handleReceivedMessage(_ message: RCMessage) {}
+    
     //组件化重构
     func radioJoinRoom(_ completion: @escaping (Result<Void, RCSceneError>) -> Void) {
         RCSensorAction.joinRoom(roomInfo, enableMic: false, enableCamera: false).trigger()
@@ -190,13 +187,4 @@ extension RCRadioRoomViewController {
     }
 }
 
-extension RCRadioRoomViewController: RCVoiceRoomDelegate {
-   
-    func messageDidReceive(_ message: RCMessage) {
-        if message.content == nil { return }
-        DispatchQueue.main.async {
-            self.handleReceivedMessage(message)
-        }
-    }
-}
 

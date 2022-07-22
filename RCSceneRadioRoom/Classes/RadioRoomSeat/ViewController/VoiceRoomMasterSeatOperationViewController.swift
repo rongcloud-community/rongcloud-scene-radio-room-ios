@@ -51,7 +51,11 @@ class VoiceRoomMasterSeatOperationViewController: UIViewController {
         RCSceneUserManager.shared.fetchUserInfo(userId: userId) { [weak self] user in
             self?.popView.updateView(user: user)
         }
-        if isMute || RCVoiceRoomEngine.sharedInstance().isDisableAudioRecording() {
+        
+        let streamDisabled =
+        RCRTCEngine.sharedInstance().defaultAudioStream.resourceState == .ResourceStateDisabled
+        
+        if isMute || streamDisabled {
             popView.muteButton.setTitle("打开麦克风", for: .normal)
         } else {
             popView.muteButton.setTitle("关闭麦克风", for: .normal)

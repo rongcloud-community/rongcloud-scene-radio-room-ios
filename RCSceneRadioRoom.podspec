@@ -30,7 +30,6 @@ Pod::Spec.new do |s|
   # 5 - dependency
   s.dependency 'Pulsator'
   s.dependency 'XCoordinator'
-  s.dependency 'RCVoiceRoomLib'
   s.dependency 'RCSceneRoom/RCSceneRoom'
   s.dependency 'RCSceneRoom/RCSceneAnalytics'
   

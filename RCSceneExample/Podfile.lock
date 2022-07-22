@@ -1,12 +1,17 @@
 PODS:
-  - Alamofire (5.6.1)
+  - Alamofire (5.6.2)
   - FCFileManager (1.0.20)
-  - Kingfisher (6.3.1)
+  - Kingfisher (5.15.8):
+    - Kingfisher/Core (= 5.15.8)
+  - Kingfisher/Core (5.15.8)
   - Masonry (1.1.0)
   - Moya (15.0.0):
     - Moya/Core (= 15.0.0)
   - Moya/Core (15.0.0):
     - Alamofire (~> 5.0)
+  - PLPlayerKit (3.4.9):
+    - PLPlayerKit/iphoneos (= 3.4.9)
+  - PLPlayerKit/iphoneos (3.4.9)
   - Pulsator (0.6.0)
   - RCCoreKit (0.0.1):
     - FCFileManager
@@ -102,24 +107,24 @@ PODS:
     - RongCloudIM/IMLib (= 5.2.3)
   - RongCloudRTC/RongRTCLib (5.2.3.1):
     - RongCloudIM/IMLibCore (>= 5.1.4)
-  - SDWebImage (5.13.0):
-    - SDWebImage/Core (= 5.13.0)
-  - SDWebImage/Core (5.13.0)
-  - SensorsAnalyticsSDK (4.4.0):
-    - SensorsAnalyticsSDK/Core (= 4.4.0)
-  - SensorsAnalyticsSDK/__Store (4.4.0)
-  - SensorsAnalyticsSDK/AutoTrack (4.4.0):
+  - SDWebImage (5.13.1):
+    - SDWebImage/Core (= 5.13.1)
+  - SDWebImage/Core (5.13.1)
+  - SensorsAnalyticsSDK (4.4.1):
+    - SensorsAnalyticsSDK/Core (= 4.4.1)
+  - SensorsAnalyticsSDK/__Store (4.4.1)
+  - SensorsAnalyticsSDK/AutoTrack (4.4.1):
     - SensorsAnalyticsSDK/Common
-  - SensorsAnalyticsSDK/Base (4.4.0):
+  - SensorsAnalyticsSDK/Base (4.4.1):
     - SensorsAnalyticsSDK/__Store
-  - SensorsAnalyticsSDK/Common (4.4.0):
+  - SensorsAnalyticsSDK/Common (4.4.1):
     - SensorsAnalyticsSDK/Extension
-  - SensorsAnalyticsSDK/Core (4.4.0):
+  - SensorsAnalyticsSDK/Core (4.4.1):
     - SensorsAnalyticsSDK/Common
     - SensorsAnalyticsSDK/Visualized
-  - SensorsAnalyticsSDK/Extension (4.4.0):
+  - SensorsAnalyticsSDK/Extension (4.4.1):
     - SensorsAnalyticsSDK/Base
-  - SensorsAnalyticsSDK/Visualized (4.4.0):
+  - SensorsAnalyticsSDK/Visualized (4.4.1):
     - SensorsAnalyticsSDK/AutoTrack
   - SnapKit (5.6.0)
   - SSZipArchive (2.4.3)
@@ -130,6 +135,8 @@ PODS:
   - YYModel (1.0.4)
 
 DEPENDENCIES:
+  - Kingfisher (= 5.15.8)
+  - PLPlayerKit
   - RCSceneRadioRoom (from `../`)
 
 SPEC REPOS:
@@ -139,6 +146,7 @@ SPEC REPOS:
     - Kingfisher
     - Masonry
     - Moya
+    - PLPlayerKit
     - Pulsator
     - RCCoreKit
     - RCMusicControlKit
@@ -164,11 +172,12 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
+  Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
   FCFileManager: e0f73316e6aa2eb04d2ff4caa75fe7df1ae44270
-  Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
+  Kingfisher: a3c03d702433fa6cfedabb2bddbe076fb8f2e902
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
+  PLPlayerKit: 6d377f241918be3737c811b84f8366de385c1f91
   Pulsator: eb5a9f9be4bdcbd19903984c65deca6aabe50a17
   RCCoreKit: 3f143441ac62880b454cca9066f526a27c45d4ce
   RCMusicControlKit: 79841e9b266ceccf380bf6a1c2fdec08723d2604
@@ -182,14 +191,14 @@ SPEC CHECKSUMS:
   RongCloudIM: be2941344f84bfa7ec6ea60e6379333a652bd8e3
   RongCloudOpenSource: 72f8519472b2c90975d18680dafbca2244388f0e
   RongCloudRTC: 0b9d996c067bce8e9b31f90045babef7342a92ee
-  SDWebImage: 0327043dbb9533e75f2eff8445b3df0f2ceca6ac
-  SensorsAnalyticsSDK: b906c7bbe686ce94e8886077e0111397955aca2c
+  SDWebImage: fb26a455eeda4c7a55e4dcb6172dbb258af7a4ca
+  SensorsAnalyticsSDK: 977e19575dd5292d153d63d7e5b300a5c47cf735
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   XCoordinator: a5f91e43ee944f508529763921165697d3211629
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 0a4a993dca4ed38067397530a05c34e987b71246
+PODFILE CHECKSUM: b6b0bfc6079fcb362ce68b6e38679fe8143f9aaf
 
 COCOAPODS: 1.11.3

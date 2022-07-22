@@ -33,11 +33,6 @@ extension RCRadioRoomViewController {
             }
         }
     }
-    
-    func updateRoomInfo(info: RCVoiceRoomInfo) {
-        roomInfo.roomName = info.roomName
-        roomInfoView.updateRoom(info: roomInfo)
-    }
 }
 
 extension RCRadioRoomViewController: RoomInfoViewClickProtocol {

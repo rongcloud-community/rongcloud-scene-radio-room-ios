@@ -8,5 +8,7 @@ target 'RCSceneExample' do
   # Pods for RCSceneExample
   
   pod 'RCSceneRadioRoom', :path => '../'
+  pod 'PLPlayerKit'
+  pod 'Kingfisher', '5.15.8'
   
 end
