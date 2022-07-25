@@ -16,14 +16,14 @@ extension RCRadioRoomViewController {
     @_dynamicReplacement(for: m_viewWillAppear(_:))
     private func users_viewWillAppear(_ animated: Bool) {
         m_viewWillDisappear(animated)
-        fetchmanagers()
+        fetchManagers()
     }
     
     @_dynamicReplacement(for: handleReceivedMessage(_:))
     private func users_handleReceivedMessage(_ message: RCMessage) {
         handleReceivedMessage(message)
         if message.content.isKind(of: RCChatroomAdmin.self) {
-            return fetchmanagers()
+            return fetchManagers()
         }
         if message.content.isKind(of: RCChatroomKickOut.self) {
             let content = message.content as! RCChatroomKickOut
@@ -33,7 +33,7 @@ extension RCRadioRoomViewController {
         }
     }
     
-    func fetchmanagers() {
+    func fetchManagers() {
         radioRoomService.roomManagers(roomId: roomInfo.roomId) { [weak self] result in
             switch result.map(managersWrapper.self) {
             case let .success(wrapper):
@@ -65,7 +65,7 @@ extension RCRadioRoomViewController {
 // MARK: - Owner Click User Seat Pop view Deleagte
 extension RCRadioRoomViewController: RCSRUserOperationProtocol {
     /// 踢出房间
-    func kickoutRoom(userId: String) {
+    func kickOutRoom(userId: String) {
         let ids = [Environment.currentUserId, userId]
         RCSceneUserManager.shared.fetch(ids) { users in
             let event = RCChatroomKickOut()
@@ -78,7 +78,7 @@ extension RCRadioRoomViewController: RCSRUserOperationProtocol {
     }
     
     func didSetManager(userId: String, isManager: Bool) {
-        fetchmanagers()
+        fetchManagers()
         RCSceneUserManager.shared.fetchUserInfo(userId: userId) { user in
             let event = RCChatroomAdmin()
             event.userId = user.userId

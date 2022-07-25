@@ -26,90 +26,85 @@ PODS:
     - Masonry
     - RCCoreKit
     - YYModel
-  - RCSceneLog (0.0.1.2)
   - RCSceneRadioRoom (0.0.4):
+    - PLPlayerKit
     - Pulsator
     - RCSceneRoom/RCSceneAnalytics
     - RCSceneRoom/RCSceneRoom
-    - RCVoiceRoomLib
     - XCoordinator
-  - RCSceneRoom/RCSceneAnalytics (0.0.4):
+  - RCSceneRoom/RCSceneAnalytics (0.0.4.1):
     - RCSceneRoom/RCSceneRoomSetting
     - SensorsAnalyticsSDK
-  - RCSceneRoom/RCSceneGift (0.0.4):
+  - RCSceneRoom/RCSceneGift (0.0.4.1):
     - Kingfisher
     - RCSceneRoom/RCSceneMessage
     - RCSceneRoom/RCSceneService
     - Reusable
     - SnapKit
     - SVProgressHUD
-  - RCSceneRoom/RCSceneMessage (0.0.4):
+  - RCSceneRoom/RCSceneMessage (0.0.4.1):
     - RongCloudIM/IMLib
-  - RCSceneRoom/RCSceneMusic (0.0.4):
+  - RCSceneRoom/RCSceneMusic (0.0.4.1):
     - RCMusicControlKit
     - RCSceneRoom/RCSceneMessage
     - RCSceneRoom/RCSceneService
     - RongCloudRTC/RongRTCLib
     - SVProgressHUD
-  - RCSceneRoom/RCSceneRoom (0.0.4):
+  - RCSceneRoom/RCSceneRoom (0.0.4.1):
     - RCSceneChatroomKit
     - RCSceneRoom/RCSceneGift
     - RCSceneRoom/RCSceneMusic
     - RCSceneRoom/RCSceneRoomSetting
     - RCSceneRoom/RCSRChat
-  - RCSceneRoom/RCSceneRoomSetting (0.0.4):
+  - RCSceneRoom/RCSceneRoomSetting (0.0.4.1):
     - RCSceneRoom/RCSceneService
     - RCSceneRoom/RCSRPassword
     - Reusable
-  - RCSceneRoom/RCSceneService (0.0.4):
+  - RCSceneRoom/RCSceneService (0.0.4.1):
     - RCSceneRoom/RCSRBase
     - ReachabilitySwift
-  - RCSceneRoom/RCSRAssets (0.0.4)
-  - RCSceneRoom/RCSRBase (0.0.4):
+  - RCSceneRoom/RCSRAssets (0.0.4.1)
+  - RCSceneRoom/RCSRBase (0.0.4.1):
     - Moya
-  - RCSceneRoom/RCSRChat (0.0.4):
+  - RCSceneRoom/RCSRChat (0.0.4.1):
     - RCSceneRoom/RCSceneService
     - RongCloudOpenSource/IMKit
     - SVProgressHUD
-  - RCSceneRoom/RCSRPassword (0.0.4):
+  - RCSceneRoom/RCSRPassword (0.0.4.1):
     - RCSceneRoom/RCSRAssets
     - RCSceneRoom/RCSRBase
     - SnapKit
-  - RCVoiceRoomLib (2.0.8.100):
-    - RCSceneLog
-    - RongCloudIM/IMLib
-    - RongCloudRTC/RongRTCLib
   - ReachabilitySwift (5.0.0)
   - Reusable (4.1.2):
     - Reusable/Storyboard (= 4.1.2)
     - Reusable/View (= 4.1.2)
   - Reusable/Storyboard (4.1.2)
   - Reusable/View (4.1.2)
-  - RongCloudIM/ChatRoom (5.2.3):
+  - RongCloudIM/ChatRoom (5.2.4):
     - RongCloudIM/IMLibCore
-  - RongCloudIM/CustomerService (5.2.3):
+  - RongCloudIM/CustomerService (5.2.4):
     - RongCloudIM/IMLibCore
-  - RongCloudIM/Discussion (5.2.3):
+  - RongCloudIM/Discussion (5.2.4):
     - RongCloudIM/IMLibCore
-  - RongCloudIM/IMLib (5.2.3):
+  - RongCloudIM/IMLib (5.2.4):
     - RongCloudIM/ChatRoom
     - RongCloudIM/CustomerService
     - RongCloudIM/Discussion
     - RongCloudIM/IMLibCore
     - RongCloudIM/Location
     - RongCloudIM/PublicService
-  - RongCloudIM/IMLibCore (5.2.3)
-  - RongCloudIM/Location (5.2.3):
+  - RongCloudIM/IMLibCore (5.2.4)
+  - RongCloudIM/Location (5.2.4):
     - RongCloudIM/IMLibCore
-  - RongCloudIM/PublicService (5.2.3):
+  - RongCloudIM/PublicService (5.2.4):
     - RongCloudIM/IMLibCore
-  - RongCloudOpenSource/IMKit (5.2.3):
-    - RongCloudIM/IMLib (= 5.2.3)
-  - RongCloudRTC/RongRTCLib (5.2.3.1):
+  - RongCloudOpenSource/IMKit (5.2.4):
+    - RongCloudIM/IMLib (= 5.2.4)
+  - RongCloudRTC/RongRTCLib (5.2.4):
     - RongCloudIM/IMLibCore (>= 5.1.4)
-  - SDWebImage (5.13.1):
-    - SDWebImage/Core (= 5.13.1)
-  - SDWebImage/Core (5.13.1)
+  - SDWebImage (5.13.2):
+    - SDWebImage/Core (= 5.13.2)
+  - SDWebImage/Core (5.13.2)
   - SensorsAnalyticsSDK (4.4.1):
     - SensorsAnalyticsSDK/Core (= 4.4.1)
   - SensorsAnalyticsSDK/__Store (4.4.1)
@@ -151,9 +146,7 @@ SPEC REPOS:
     - RCCoreKit
     - RCMusicControlKit
     - RCSceneChatroomKit
-    - RCSceneLog
     - RCSceneRoom
-    - RCVoiceRoomLib
     - ReachabilitySwift
     - Reusable
     - RongCloudIM
@@ -182,16 +175,14 @@ SPEC CHECKSUMS:
   RCCoreKit: 3f143441ac62880b454cca9066f526a27c45d4ce
   RCMusicControlKit: 79841e9b266ceccf380bf6a1c2fdec08723d2604
   RCSceneChatroomKit: 86d8c5ead5c2cb10efce95d3eea2e854e55b7942
-  RCSceneLog: c38de10f8ccd4aa65eb9ac7c0a5c6b2042e7579e
-  RCSceneRadioRoom: 1d5c5a8683e860d0162a5ebe903923ec37004bff
-  RCSceneRoom: 69c4b9eb6768c61999918625d2b1316d2046d14a
-  RCVoiceRoomLib: cda6173fd70bbb393b383a64a879917c2af14167
+  RCSceneRadioRoom: 6fb737a4ff90de522dfc034762a5a978f66fca88
+  RCSceneRoom: 97e3336645621a63b80fb3b49f9fe215a18c2ba8
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   Reusable: 6bae6a5e8aa793c9c441db0213c863a64bce9136
-  RongCloudIM: be2941344f84bfa7ec6ea60e6379333a652bd8e3
-  RongCloudOpenSource: 72f8519472b2c90975d18680dafbca2244388f0e
-  RongCloudRTC: 0b9d996c067bce8e9b31f90045babef7342a92ee
-  SDWebImage: fb26a455eeda4c7a55e4dcb6172dbb258af7a4ca
+  RongCloudIM: 09269332ab90c9a8d966f38b25410c8d2629eee6
+  RongCloudOpenSource: eaafe743b1b7b848b2e306560330d3a4af065a82
+  RongCloudRTC: a769dc9e17f8e3e59df00aa5858b4a738a4ec037
+  SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
   SensorsAnalyticsSDK: 977e19575dd5292d153d63d7e5b300a5c47cf735
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef

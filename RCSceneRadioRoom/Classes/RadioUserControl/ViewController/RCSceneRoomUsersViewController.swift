@@ -66,7 +66,7 @@ class RCSceneRoomUsersViewController: UIViewController {
             make.width.height.equalTo(190.resize)
         }
         fetchRoomUserlist()
-        fetchmanagers()
+        fetchManagers()
     }
     
     private func buildLayout() {
@@ -97,7 +97,7 @@ class RCSceneRoomUsersViewController: UIViewController {
         }
     }
     
-    private func fetchmanagers() {
+    private func fetchManagers() {
         userService.roomManagers(roomId: room.roomId) { [weak self] result in
             switch result.map(RCSceneWrapper<[RCSceneRoomUser]>.self) {
             case let .success(wrapper):
@@ -150,6 +150,6 @@ extension RCSceneRoomUsersViewController: UITableViewDelegate {
         
         let controller = RCSRUserOperationViewController(dependency: dependency,
                                                      delegate: delegate)
-        show(controller, sender: nil)
+        present(controller, animated: true)
     }
 }
