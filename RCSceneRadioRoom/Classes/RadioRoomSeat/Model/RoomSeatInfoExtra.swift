@@ -22,21 +22,3 @@ struct RoomSeatInfoExtra: Codable {
         }
     }
 }
-
-extension RCVoiceSeatInfo {
-    func decodeExtra() -> RoomSeatInfoExtra? {
-        if let extra = self.extra {
-            let data = Data(extra.utf8)
-            return try? JSONDecoder().decode(RoomSeatInfoExtra.self, from: data)
-        }
-        return nil
-    }
-    
-    var disableRecording: Bool {
-        if let seatInfoExtra = self.decodeExtra() {
-            return seatInfoExtra.disableRecording
-        } else {
-            return false
-        }
-    }
-}

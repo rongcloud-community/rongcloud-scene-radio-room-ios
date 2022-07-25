@@ -8,6 +8,8 @@
 import SVProgressHUD
 import RCSceneRoom
 import RCSceneChatroomKit
+import PLPlayerKit
+
 
 final class RCRadioRoomViewController: RCModuleViewController {
     private(set) lazy var queue = DispatchQueue(label: "rc_radio_room_queue")
@@ -21,6 +23,18 @@ final class RCRadioRoomViewController: RCModuleViewController {
     private(set) lazy var giftButton = RCChatroomSceneButton(.gift)
     private(set) lazy var messageButton = RCChatroomSceneButton(.message)
     private(set) lazy var settingButton = RCChatroomSceneButton(.setting)
+    
+    var cdnPlayer: PLPlayer?
+    
+    private(set) lazy var cdnPlayerOpt: PLPlayerOption = {
+        let option = PLPlayerOption.default()
+        option.setOptionValue(kPLPLAY_FORMAT_FLV, forKey:PLPlayerOptionKeyTimeoutIntervalForMediaPackets)
+        option.setOptionValue(kPLLogInfo, forKey:PLPlayerOptionKeyLogLevel)
+        return option
+    }()
+     
+    
+    var liveInfo: RCRTCLiveInfo?
     
     var messageView: RCChatroomSceneMessageView {
         return chatroomView.messageView
@@ -43,10 +57,12 @@ final class RCRadioRoomViewController: RCModuleViewController {
     
     var roomInfo: RCSceneRoom
     let isCreate: Bool
+    let useThirdCdn: Bool
     
-    init(_ roomInfo: RCSceneRoom, isCreate: Bool = false) {
+    init(_ roomInfo: RCSceneRoom, isCreate: Bool = false, useThirdCdn: Bool) {
         self.roomInfo = roomInfo
         self.isCreate = isCreate
+        self.useThirdCdn = useThirdCdn
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -66,11 +82,8 @@ final class RCRadioRoomViewController: RCModuleViewController {
     }
     
     ///消息回调，在engine模块中触发
-    dynamic func handleReceivedMessage(_ message: RCMessage) {
-        handleCommandMessage(message)
-    }
-    //处理音乐消息同步指令消息
-    func handleCommandMessage(_ message: RCMessage) {}
+    dynamic func handleReceivedMessage(_ message: RCMessage) {}
+    
     //组件化重构
     func radioJoinRoom(_ completion: @escaping (Result<Void, RCSceneError>) -> Void) {
         RCSensorAction.joinRoom(roomInfo, enableMic: false, enableCamera: false).trigger()
@@ -82,7 +95,11 @@ final class RCRadioRoomViewController: RCModuleViewController {
                 if roomInfo.isOwner {
                     enterSeat { _ in }
                 } else {
-                    listenToTheRadio { _ in }
+                    if self.useThirdCdn {
+                        listenThirdCDNRadio{ _ in }
+                    } else {
+                        listenToTheRadio { _ in }
+                    }
                 }
                 SceneRoomManager.shared.currentRoom = roomInfo
                 sendJoinRoomMessage()
@@ -190,13 +207,4 @@ extension RCRadioRoomViewController {
     }
 }
 
-extension RCRadioRoomViewController: RCVoiceRoomDelegate {
-   
-    func messageDidReceive(_ message: RCMessage) {
-        if message.content == nil { return }
-        DispatchQueue.main.async {
-            self.handleReceivedMessage(message)
-        }
-    }
-}
 

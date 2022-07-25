@@ -55,8 +55,7 @@ class RCRadioRoomOwnerView: UIView {
         instance.image = RCSCAsset.Images.muteMicrophoneIcon.image
         return instance
     }()
-    private(set) var seatInfo: RCVoiceSeatInfo?
-    
+
     var giftValue: Int {
         return giftView.value
     }
