@@ -9,9 +9,9 @@ import UIKit
 import XCoordinator
 import RCSceneRoom
 
-public func RCRadioRoomController(room: RCSceneRoom, creation: Bool = false) -> RCRoomCycleProtocol {
+public func RCRadioRoomController(room: RCSceneRoom, creation: Bool = false, useThirdCdn: Bool = true) -> RCRoomCycleProtocol {
     RCSceneIMMessageRegistration()
-    return RCRadioRoomViewController(room, isCreate: creation)
+    return RCRadioRoomViewController(room, isCreate: creation, useThirdCdn: useThirdCdn)
 }
 
 extension RCRadioRoomViewController: RCRoomCycleProtocol {
