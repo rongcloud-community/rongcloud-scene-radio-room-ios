@@ -8,7 +8,8 @@ target 'RCSceneExample' do
   # Pods for RCSceneExample
   
   pod 'RCSceneRadioRoom', :path => '../'
+  pod 'RCSceneRoom', :path => '~/workspace/rongcloud-scene-room-ios'
   pod 'PLPlayerKit'
-  pod 'Kingfisher', '5.15.8'
+#  pod 'Kingfisher', '5.15.8'
   
 end
