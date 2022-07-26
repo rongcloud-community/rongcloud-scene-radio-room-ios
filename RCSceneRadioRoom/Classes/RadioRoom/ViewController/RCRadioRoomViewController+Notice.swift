@@ -29,14 +29,7 @@ extension RCRadioRoomViewController: VoiceRoomNoticeDelegate {
             if (pass) {
                 self.roomKVState.update(notice: notice)
                 let message = RCTextMessage(content: "房间公告已更新")!
-                ChatroomSendMessage(message) { result in
-                    switch result {
-                    case .success:
-                        self.messageView.addMessage(message)
-                    case .failure(let error):
-                        SVProgressHUD.showError(withStatus: error.localizedDescription)
-                    }
-                }
+                self.messageView.addMessage(message)
             } else {
                 SVProgressHUD.showError(withStatus: msg);
             }

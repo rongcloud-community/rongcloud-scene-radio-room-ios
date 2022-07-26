@@ -196,6 +196,7 @@ extension RCRadioRoomViewController {
         cdnPlayer!.delegateQueue = DispatchQueue.main;
         cdnPlayer?.delegate = self
         cdnPlayer?.play()
+        cdnPlayer?.setVolume(1.0)
     }
     
 }

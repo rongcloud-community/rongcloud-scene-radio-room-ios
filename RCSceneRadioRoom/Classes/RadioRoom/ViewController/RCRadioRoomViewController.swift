@@ -74,6 +74,11 @@ final class RCRadioRoomViewController: RCModuleViewController {
         super.viewDidLoad()
         setupConstraints()
         bubbleViewAddGesture()
+    
+        // AVAudioSession 设置
+        try? AVAudioSession.sharedInstance().setCategory(.playback)
+        try? AVAudioSession.sharedInstance().setActive(true)
+        
         RCSceneMusic.join(roomInfo, bubbleView: musicInfoBubbleView!)
     }
     
