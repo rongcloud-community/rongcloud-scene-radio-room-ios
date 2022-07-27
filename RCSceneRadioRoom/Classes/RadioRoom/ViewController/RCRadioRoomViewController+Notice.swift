@@ -28,8 +28,6 @@ extension RCRadioRoomViewController: VoiceRoomNoticeDelegate {
         LiveNoticeChecker.check(notice) { pass, msg in
             if (pass) {
                 self.roomKVState.update(notice: notice)
-                let message = RCTextMessage(content: "房间公告已更新")!
-                self.messageView.addMessage(message)
             } else {
                 SVProgressHUD.showError(withStatus: msg);
             }

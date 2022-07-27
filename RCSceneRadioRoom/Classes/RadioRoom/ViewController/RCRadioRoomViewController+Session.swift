@@ -318,6 +318,11 @@ extension RCRadioRoomViewController: RCRadioRoomKVDelegate {
         roomOwnerView.update(seat: roomKVState.seating ? roomInfo.userId : nil)
         roomOwnerView.update(seat: roomKVState.mute)
     }
+    
+    func roomKVDidChanged(notice: String) {
+        let message = RCTextMessage(content: "房间公告已更新")!
+        self.messageView.addMessage(message)
+    }
 }
 
 extension RCRadioRoomViewController: RCChatRoomStatusDelegate {
