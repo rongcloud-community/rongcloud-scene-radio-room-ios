@@ -8,7 +8,6 @@
 import SVProgressHUD
 import RCSceneRoom
 import RCSceneChatroomKit
-import PLPlayerKit
 
 
 final class RCRadioRoomViewController: RCModuleViewController {
@@ -24,16 +23,7 @@ final class RCRadioRoomViewController: RCModuleViewController {
     private(set) lazy var messageButton = RCChatroomSceneButton(.message)
     private(set) lazy var settingButton = RCChatroomSceneButton(.setting)
     
-    var cdnPlayer: PLPlayer?
-    
-    private(set) lazy var cdnPlayerOpt: PLPlayerOption = {
-        let option = PLPlayerOption.default()
-        option.setOptionValue(kPLPLAY_FORMAT_FLV, forKey:PLPlayerOptionKeyTimeoutIntervalForMediaPackets)
-        option.setOptionValue(kPLLogInfo, forKey:PLPlayerOptionKeyLogLevel)
-        return option
-    }()
-     
-    
+    var cdnPlayer: RCPlayerProtocol?
     var liveInfo: RCRTCLiveInfo?
     
     var messageView: RCChatroomSceneMessageView {
@@ -59,10 +49,11 @@ final class RCRadioRoomViewController: RCModuleViewController {
     let isCreate: Bool
     let useThirdCdn: Bool
     
-    init(_ roomInfo: RCSceneRoom, isCreate: Bool = false, useThirdCdn: Bool) {
+    init(_ roomInfo: RCSceneRoom, isCreate: Bool = false, useThirdCdn: Bool, player: RCPlayerProtocol?) {
         self.roomInfo = roomInfo
         self.isCreate = isCreate
         self.useThirdCdn = useThirdCdn
+        self.cdnPlayer = player
         super.init(nibName: nil, bundle: nil)
     }
     

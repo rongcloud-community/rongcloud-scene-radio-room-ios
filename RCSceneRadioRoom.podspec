@@ -32,5 +32,4 @@ Pod::Spec.new do |s|
   s.dependency 'XCoordinator'
   s.dependency 'RCSceneRoom/RCSceneRoom'
   s.dependency 'RCSceneRoom/RCSceneAnalytics'
-  s.dependency 'PLPlayerKit'
 end
