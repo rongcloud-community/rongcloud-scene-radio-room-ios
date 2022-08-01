@@ -7,9 +7,6 @@ PODS:
     - Moya/Core (= 15.0.0)
   - Moya/Core (15.0.0):
     - Alamofire (~> 5.0)
-  - PLPlayerKit (3.4.9):
-    - PLPlayerKit/iphoneos (= 3.4.9)
-  - PLPlayerKit/iphoneos (3.4.9)
   - Pulsator (0.6.0)
   - RCCoreKit (0.0.1):
     - FCFileManager
@@ -24,14 +21,11 @@ PODS:
     - Masonry
     - RCCoreKit
     - YYModel
-  - RCSceneRadioRoom (0.0.4):
-    - PLPlayerKit
+  - RCSceneRadioRoom (0.0.4.1):
     - Pulsator
     - RCSceneRoom/RCSceneAnalytics
     - RCSceneRoom/RCSceneRoom
     - XCoordinator
-  - RCSceneRoom (0.0.4.2):
-    - RCSceneRoom/RCSceneRoom (= 0.0.4.2)
   - RCSceneRoom/RCSceneAnalytics (0.0.4.2):
     - RCSceneRoom/RCSceneRoomSetting
     - SensorsAnalyticsSDK
@@ -105,21 +99,21 @@ PODS:
   - SDWebImage (5.13.2):
     - SDWebImage/Core (= 5.13.2)
   - SDWebImage/Core (5.13.2)
-  - SensorsAnalyticsSDK (4.4.1):
-    - SensorsAnalyticsSDK/Core (= 4.4.1)
-  - SensorsAnalyticsSDK/__Store (4.4.1)
-  - SensorsAnalyticsSDK/AutoTrack (4.4.1):
+  - SensorsAnalyticsSDK (4.4.2):
+    - SensorsAnalyticsSDK/Core (= 4.4.2)
+  - SensorsAnalyticsSDK/__Store (4.4.2)
+  - SensorsAnalyticsSDK/AutoTrack (4.4.2):
     - SensorsAnalyticsSDK/Common
-  - SensorsAnalyticsSDK/Base (4.4.1):
+  - SensorsAnalyticsSDK/Base (4.4.2):
     - SensorsAnalyticsSDK/__Store
-  - SensorsAnalyticsSDK/Common (4.4.1):
+  - SensorsAnalyticsSDK/Common (4.4.2):
     - SensorsAnalyticsSDK/Extension
-  - SensorsAnalyticsSDK/Core (4.4.1):
+  - SensorsAnalyticsSDK/Core (4.4.2):
     - SensorsAnalyticsSDK/Common
     - SensorsAnalyticsSDK/Visualized
-  - SensorsAnalyticsSDK/Extension (4.4.1):
+  - SensorsAnalyticsSDK/Extension (4.4.2):
     - SensorsAnalyticsSDK/Base
-  - SensorsAnalyticsSDK/Visualized (4.4.1):
+  - SensorsAnalyticsSDK/Visualized (4.4.2):
     - SensorsAnalyticsSDK/AutoTrack
   - SnapKit (5.6.0)
   - SSZipArchive (2.4.3)
@@ -130,9 +124,7 @@ PODS:
   - YYModel (1.0.4)
 
 DEPENDENCIES:
-  - PLPlayerKit
   - RCSceneRadioRoom (from `../`)
-  - RCSceneRoom (from `~/workspace/rongcloud-scene-room-ios`)
 
 SPEC REPOS:
   trunk:
@@ -141,11 +133,11 @@ SPEC REPOS:
     - Kingfisher
     - Masonry
     - Moya
-    - PLPlayerKit
     - Pulsator
     - RCCoreKit
     - RCMusicControlKit
     - RCSceneChatroomKit
+    - RCSceneRoom
     - ReachabilitySwift
     - Reusable
     - RongCloudIM
@@ -162,8 +154,6 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   RCSceneRadioRoom:
     :path: "../"
-  RCSceneRoom:
-    :path: "~/workspace/rongcloud-scene-room-ios"
 
 SPEC CHECKSUMS:
   Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
@@ -171,12 +161,11 @@ SPEC CHECKSUMS:
   Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
-  PLPlayerKit: 6d377f241918be3737c811b84f8366de385c1f91
   Pulsator: eb5a9f9be4bdcbd19903984c65deca6aabe50a17
   RCCoreKit: 3f143441ac62880b454cca9066f526a27c45d4ce
   RCMusicControlKit: 79841e9b266ceccf380bf6a1c2fdec08723d2604
   RCSceneChatroomKit: 86d8c5ead5c2cb10efce95d3eea2e854e55b7942
-  RCSceneRadioRoom: 6fb737a4ff90de522dfc034762a5a978f66fca88
+  RCSceneRadioRoom: 137d7f3f8374f94aa908be3f6bddc8306b1b26be
   RCSceneRoom: c5247d87db77ea9107dec755b1dd426ef6f33b14
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   Reusable: 6bae6a5e8aa793c9c441db0213c863a64bce9136
@@ -184,13 +173,13 @@ SPEC CHECKSUMS:
   RongCloudOpenSource: eaafe743b1b7b848b2e306560330d3a4af065a82
   RongCloudRTC: a769dc9e17f8e3e59df00aa5858b4a738a4ec037
   SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
-  SensorsAnalyticsSDK: 977e19575dd5292d153d63d7e5b300a5c47cf735
+  SensorsAnalyticsSDK: 5531395b844c016ac2ec189d15724bca07e6bac7
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   XCoordinator: a5f91e43ee944f508529763921165697d3211629
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 8499e97e722786c663d77cbaa0f6edea401f98bc
+PODFILE CHECKSUM: 0a4a993dca4ed38067397530a05c34e987b71246
 
 COCOAPODS: 1.11.3

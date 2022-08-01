@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   # 3 - config
   s.pod_target_xcconfig = {
     'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
-    'VALID_ARCHS' => 'arm64 armv7',
+    'VALID_ARCHS' => 'arm64 armv7 x86_64',
     'SWIFT_COMPILATION_MODE' => 'Incremental',
     'OTHER_SWIFT_FLAGS' => '-Xfrontend -enable-dynamic-replacement-chaining',
   }
