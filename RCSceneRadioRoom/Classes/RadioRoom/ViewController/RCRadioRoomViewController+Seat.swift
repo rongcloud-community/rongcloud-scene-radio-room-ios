@@ -12,7 +12,7 @@ extension RCRadioRoomViewController {
     @_dynamicReplacement(for: m_viewDidLoad)
     private func seat_viewDidLoad() {
         m_viewDidLoad()
-        RCRTCEngine.sharedInstance().enableSpeaker(true)
+        RCRTCEngine.sharedInstance().setDefaultAudioRouteToSpeaker(true)
         NotificationCenter.default
             .addObserver(self,
                          selector: #selector(onRouteChanged(_:)),
@@ -32,6 +32,6 @@ extension RCRadioRoomViewController {
             default: return false
             }
         }
-        RCRTCEngine.sharedInstance().enableSpeaker(!isHeadsetPluggedIn)
+        RCRTCEngine.sharedInstance().setDefaultAudioRouteToSpeaker(!isHeadsetPluggedIn)
     }
 }

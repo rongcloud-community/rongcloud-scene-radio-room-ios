@@ -9,15 +9,7 @@ import Foundation
 
 let radioRoomService = RadioRoomService()
 
-class RadioRoomService {
-    
-    func formatRtmpUrl(roomId: String, isPush: Bool) -> String {
-        let push_host = "rtmp://scene.bsy.push.rongcloud.net"
-        let pull_host = "rtmp://scene.bsy.pull.rongcloud.net"
-        let host = isPush ? push_host : pull_host
-        return "\(host)/rcrtc/\(roomId)"
-    }
-    
+class RadioRoomService {    
     // room service
     func createRoom(name: String,
                     themePictureUrl: String,

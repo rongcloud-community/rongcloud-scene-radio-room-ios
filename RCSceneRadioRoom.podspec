@@ -3,7 +3,9 @@ Pod::Spec.new do |s|
   
   # 1 - Info
   s.name             = 'RCSceneRadioRoom'
+
   s.version          = '0.0.4.1'
+
   s.summary          = 'Scene Radio Room'
   s.description      = "Scene Radio Room module"
   s.homepage         = 'https://github.com/rongcloud'
@@ -32,5 +34,4 @@ Pod::Spec.new do |s|
   s.dependency 'XCoordinator'
   s.dependency 'RCSceneRoom/RCSceneRoom'
   s.dependency 'RCSceneRoom/RCSceneAnalytics'
-  s.dependency 'PLPlayerKit'
 end

@@ -9,9 +9,9 @@ import UIKit
 import XCoordinator
 import RCSceneRoom
 
-public func RCRadioRoomController(room: RCSceneRoom, creation: Bool = false, useThirdCdn: Bool = true) -> RCRoomCycleProtocol {
+public func RCRadioRoomController(room: RCSceneRoom, creation: Bool = false, useThirdCdn: Bool = true, player: RCPlayerProtocol?) -> RCRoomCycleProtocol {
     RCSceneIMMessageRegistration()
-    return RCRadioRoomViewController(room, isCreate: creation, useThirdCdn: useThirdCdn)
+    return RCRadioRoomViewController(room, isCreate: creation, useThirdCdn: useThirdCdn, player: player)
 }
 
 extension RCRadioRoomViewController: RCRoomCycleProtocol {
@@ -44,4 +44,33 @@ fileprivate func RCSceneIMMessageRegistration() {
     RCIM.shared().registerMessageType(RCGiftBroadcastMessage.self)
     RCIM.shared().registerMessageType(RCPKGiftMessage.self)
     RCIM.shared().registerMessageType(RCPKStatusMessage.self)
+}
+
+
+
+public protocol RCPlayerProtocol {
+    
+    func rtmpUrl(roomId: String, isPush: Bool) -> String
+    
+    func play(url: String)
+    
+    func pause()
+    
+    func resume()
+    
+    func stop()
+    
+    func destory()
+}
+
+extension RCPlayerProtocol {
+    public func play(url: String) {}
+    
+    public func pause() {}
+    
+    public func resume() {}
+    
+    public func stop() {}
+    
+    public func destory() {}
 }

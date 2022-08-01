@@ -39,16 +39,30 @@ extension RCRadioRoomViewController {
 extension RCRadioRoomViewController: RCChatroomSceneToolBarDelegate {
     func textInputViewSendText(_ text: String) {
         let roomId = roomInfo.roomId
-        RCSceneUserManager.shared.fetchUserInfo(userId: Environment.currentUserId) { [weak self] user in
-            let event = RCChatroomBarrage()
-            event.userId = user.userId
-            event.userName = user.userName
-            event.content = text
-            self?.chatroomView.messageView.addMessage(event)
-            if text.isCivilized {
-                RCChatroomMessageCenter.sendChatMessage(roomId,
-                                                        content: event,
-                                                        result: { _, _ in })
+        radioRoomService.forbiddenList(roomId: roomId) { result in
+            switch result {
+            case .success(let response):
+                let data = response.data
+                let responseModel = try? JSONDecoder().decode(RCSceneWrapper<[RCSceneRoomForbiddenWord]>.self, from: data)
+                let wordlist = responseModel?.data ?? []
+                let forbiddenWords = wordlist.map(\.name)
+                let isCivilized = forbiddenWords.first { text.contains($0) } == nil
+                
+                RCSceneUserManager.shared.fetchUserInfo(userId: Environment.currentUserId) { [weak self] user in
+                    let event = RCChatroomBarrage()
+                    event.userId = user.userId
+                    event.userName = user.userName
+                    event.content = text
+                    self?.chatroomView.messageView.addMessage(event)
+                    if isCivilized {
+                        RCChatroomMessageCenter.sendChatMessage(roomId,
+                                                                content: event,
+                                                                result: { _, _ in })
+                    }
+                }
+                
+            case let .failure(error):
+                SVProgressHUD.showError(withStatus: error.localizedDescription)
             }
         }
     }
@@ -90,12 +104,3 @@ extension RCRadioRoomViewController: RCChatroomSceneToolBarDelegate {
     
 }
 
-extension String {
-    var civilized: String {
-        return SceneRoomManager.shared.forbiddenWords.reduce(self) { $0.replacingOccurrences(of: $1, with: String(repeating: "*", count: $1.count)) }
-    }
-    
-    var isCivilized: Bool {
-        return SceneRoomManager.shared.forbiddenWords.first(where: { contains($0) }) == nil
-    }
-}

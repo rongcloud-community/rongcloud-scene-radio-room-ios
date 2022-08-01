@@ -6,7 +6,6 @@
 //
 
 import SVProgressHUD
-import PLPlayerKit
 import Foundation
 
 fileprivate var kRadioRoomRtcRoomKey: Int = 1
@@ -123,8 +122,9 @@ extension RCRadioRoomViewController {
             
             if self.useThirdCdn {
                 if let liveInfo = self.liveInfo {
-                    let cdnUrl = radioRoomService.formatRtmpUrl(roomId: self.roomInfo.roomId, isPush: true)
-                    liveInfo.removePublishStreamUrl(cdnUrl, completion: { success, code, data in })
+                    guard let player = self.cdnPlayer else { return }
+                    let cdnUrl = player.rtmpUrl(roomId: self.roomInfo.roomId, isPush: true)
+                        liveInfo.removePublishStreamUrl(cdnUrl, completion: { _, _, _ in })
                 }
             }
             
@@ -145,8 +145,9 @@ extension RCRadioRoomViewController {
                 } else {
                     if self.useThirdCdn {
                         self.liveInfo = liveInfo
-                        let cdnUrl = radioRoomService.formatRtmpUrl(roomId: self.roomInfo.roomId, isPush: true)
-                        liveInfo?.addPublishStreamUrl(cdnUrl, completion: { success, code, data in })
+                        guard let player = self.cdnPlayer else { return }
+                        let cdnUrl = player.rtmpUrl(roomId: self.roomInfo.roomId, isPush: true)
+                        liveInfo?.addPublishStreamUrl(cdnUrl, completion: { _, _, _ in })
                     }
                     completion(.success(()))
                 }
@@ -189,28 +190,13 @@ extension RCRadioRoomViewController {
     
     func listenThirdCDNRadio(_ completion: @escaping (Result<Void, RCSceneError>) -> Void) {
         if roomInfo.isOwner { return }
-        let rtmpUrl = radioRoomService.formatRtmpUrl(roomId: self.roomInfo.roomId, isPush: false)
-        let url = URL(string: rtmpUrl)
-        
-        cdnPlayer = PLPlayer(liveWith: url, option: nil)
-        cdnPlayer!.delegateQueue = DispatchQueue.main;
-        cdnPlayer?.delegate = self
-        cdnPlayer?.play()
+        guard let player = self.cdnPlayer else { return }
+        let rtmpUrl = player.rtmpUrl(roomId: self.roomInfo.roomId, isPush: false)
+        cdnPlayer?.play(url: rtmpUrl)
     }
     
 }
 
-
-extension RCRadioRoomViewController: PLPlayerDelegate {
-    func player(_ player: PLPlayer, statusDidChange state: PLPlayerStatus) {
-        
-    }
-    
-    func player(_ player: PLPlayer, stoppedWithError error: Error?) {
-        
-    }
-    
-}
 extension RCRadioRoomViewController: RCRTCStatusReportDelegate {
     func didReport(_ form: RCRTCStatusForm) {
         DispatchQueue.main.async {
@@ -316,6 +302,11 @@ extension RCRadioRoomViewController: RCRadioRoomKVDelegate {
         roomOwnerView.update(radar: roomKVState.speaking)
         roomOwnerView.update(seat: roomKVState.seating ? roomInfo.userId : nil)
         roomOwnerView.update(seat: roomKVState.mute)
+    }
+    
+    func roomKVDidChanged(notice: String) {
+        let message = RCTextMessage(content: "房间公告已更新")!
+        self.messageView.addMessage(message)
     }
 }
 
