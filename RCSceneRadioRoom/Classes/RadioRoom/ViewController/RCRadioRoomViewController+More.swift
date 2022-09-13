@@ -19,9 +19,7 @@ extension RCRadioRoomViewController {
     @_dynamicReplacement(for: handleReceivedMessage(_:))
     private func more_handleReceivedMessage(_ message :RCMessage) {
         handleReceivedMessage(message)
-        guard message.content.isKind(of: RCRRCloseMessage.self) else {
-            return
-        }
+        guard let _ = message.content as? RCRRCloseMessage else { return }
         didCloseRoom()
     }
     

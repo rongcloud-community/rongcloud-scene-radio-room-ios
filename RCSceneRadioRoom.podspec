@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   # 1 - Info
   s.name             = 'RCSceneRadioRoom'
 
-  s.version          = '0.0.4.1'
+  s.version          = '0.0.4.5'
 
   s.summary          = 'Scene Radio Room'
   s.description      = "Scene Radio Room module"
@@ -32,6 +32,6 @@ Pod::Spec.new do |s|
   # 5 - dependency
   s.dependency 'Pulsator'
   s.dependency 'XCoordinator'
-  s.dependency 'RCSceneRoom/RCSceneRoom'
+  s.dependency 'RCSceneRoom/RCSceneRoom', '>=0.0.4.5'
   s.dependency 'RCSceneRoom/RCSceneAnalytics'
 end

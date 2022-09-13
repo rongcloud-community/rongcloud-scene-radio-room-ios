@@ -59,7 +59,7 @@ extension RCRadioRoomViewController {
         guard
             message.conversationType == .ConversationType_CHATROOM,
             message.targetId == roomInfo.roomId,
-            message.content.isKind(of: RCChatroomLike.self)
+            let _ = message.content as? RCChatroomLike
         else { return }
         showLikeIcons()
     }

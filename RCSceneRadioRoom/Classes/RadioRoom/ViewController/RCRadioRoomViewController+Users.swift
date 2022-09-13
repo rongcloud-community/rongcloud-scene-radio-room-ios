@@ -22,10 +22,11 @@ extension RCRadioRoomViewController {
     @_dynamicReplacement(for: handleReceivedMessage(_:))
     private func users_handleReceivedMessage(_ message: RCMessage) {
         handleReceivedMessage(message)
-        if message.content.isKind(of: RCChatroomAdmin.self) {
+        guard let content = message.content else { return }
+        if content.isKind(of: RCChatroomAdmin.self) {
             return fetchManagers()
         }
-        if message.content.isKind(of: RCChatroomKickOut.self) {
+        if content.isKind(of: RCChatroomKickOut.self) {
             let content = message.content as! RCChatroomKickOut
             if content.targetId == Environment.currentUserId {
                 on(content.userId, kickOut: content.targetId)

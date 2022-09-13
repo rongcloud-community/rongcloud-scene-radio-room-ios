@@ -138,7 +138,7 @@ extension RCRadioRoomViewController {
     
     func enterSeat(_ completion: @escaping (Result<Void, RCSceneError>) -> Void) {
         guard roomInfo.isOwner, let rtcRoom = rtcRoom else { return completion(.success(())) }
-        rtcRoom.localUser
+        rtcRoom.localUser?
             .publishDefaultLiveStreams { success, code, liveInfo in
                 if success == false || code != .success {
                     completion(.failure(RCSceneError("发布流失败:\(code.rawValue)")))
@@ -178,7 +178,7 @@ extension RCRadioRoomViewController {
         let videoView = RCRTCRemoteVideoView()
         view.addSubview(videoView)
         stream.setVideoView(videoView)
-        rtcRoom!.localUser
+        rtcRoom!.localUser?
             .subscribeStream([stream], tinyStreams: []) { success, code in
                 if success {
                     completion(.success(()))
@@ -231,7 +231,7 @@ extension RCRadioRoomViewController: RCRTCRoomEventDelegate {
     
     func didPublishCDNStream(_ stream: RCRTCCDNInputStream) {
         debugPrint(stream)
-        rtcRoom?.localUser
+        rtcRoom?.localUser?
             .subscribeStream([stream], tinyStreams: [], completion: { success, code in })
     }
 }
@@ -305,7 +305,7 @@ extension RCRadioRoomViewController: RCRadioRoomKVDelegate {
     }
     
     func roomKVDidChanged(notice: String) {
-        let message = RCTextMessage(content: "房间公告已更新")!
+        let message = RCTextMessage(content: "房间公告已更新")
         self.messageView.addMessage(message)
     }
 }

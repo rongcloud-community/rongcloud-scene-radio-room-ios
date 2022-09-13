@@ -16,7 +16,8 @@ extension RCRadioRoomViewController {
     @_dynamicReplacement(for: handleReceivedMessage(_:))
     private func roomInfo_handleReceivedMessage(_ message :RCMessage) {
         handleReceivedMessage(message)
-        if message.content.isKind(of: RCChatroomEnter.self) || message.content.isKind(of: RCChatroomLeave.self) {
+        guard let content = message.content else { return }
+        if content.isKind(of: RCChatroomEnter.self) || content.isKind(of: RCChatroomLeave.self) {
             roomInfoView.updateRoomUserNumber()
         }
     }
