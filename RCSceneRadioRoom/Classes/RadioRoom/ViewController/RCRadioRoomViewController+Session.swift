@@ -122,7 +122,11 @@ extension RCRadioRoomViewController {
             
             if self.useThirdCdn {
                 if let liveInfo = self.liveInfo {
-                    guard let player = self.cdnPlayer else { return }
+                    guard let player = self.cdnPlayer else {
+                        /// 离开房间成功
+                        DispatchQueue.main.async { complation(result) }
+                        return
+                    }
                     let cdnUrl = player.rtmpUrl(roomId: self.roomInfo.roomId, isPush: true)
                         liveInfo.removePublishStreamUrl(cdnUrl, completion: { _, _, _ in })
                 }
